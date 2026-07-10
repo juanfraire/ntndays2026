@@ -8,22 +8,23 @@ Live at https://ntndays.space/ once the domain is moved (see below).
 Single `index.html` using Tailwind (CDN), Font Awesome (CDN), and Space Grotesk (Google Fonts).
 No build step: edit, commit, push.
 
-## Publishing checklist
+## Publishing and domain-move checklist
 
-1. Push to `main` and enable GitHub Pages (Settings > Pages > Deploy from branch `main` / root).
-2. Verify at https://juanfraire.github.io/ntndays2026/.
+The file-side work is done in both working copies (July 2026): 2025 favicon/OG/canonical fixes and `CNAME` deletion, 2026 `CNAME` containing `ntndays.space`.
+DNS at Namecheap needs no changes; the domain is reassigned on the GitHub side only, driven by the `CNAME` files.
 
-## Moving the ntndays.space domain from the 2025 repo (do when ready to go live)
-
-DNS at Namecheap needs no changes; the domain is reassigned on the GitHub side only.
-
-1. In `ntndays2025`: fix root-relative favicon links in `index.html` (`/favicon.ico` -> `favicon.ico`, etc.) so they work at the github.io URL.
-2. In `ntndays2025` repo settings (Pages): remove the custom domain, and delete the `CNAME` file. The 2025 site remains at https://juanfraire.github.io/ntndays2025/.
-3. In `ntndays2026` repo settings (Pages): set custom domain to `ntndays.space` (this creates the `CNAME` file) and re-enable "Enforce HTTPS" once the certificate is issued.
+1. Commit and push `ntndays2025` (the pushed `CNAME` deletion releases the custom domain; the 2025 site remains at https://juanfraire.github.io/ntndays2025/).
+2. Commit and push `ntndays2026`, then enable GitHub Pages (Settings > Pages > Deploy from branch `main` / root). The `CNAME` file in the repo attaches `ntndays.space`.
+3. In `ntndays2026` Pages settings, tick "Enforce HTTPS" once the certificate is issued (usually within minutes since DNS never changed).
+4. Verify https://ntndays.space/ serves the 2026 site and the Past Editions links resolve.
 
 ## TODOs before launch
 
 - [ ] Organizing committee list (`#committee` section)
-- [ ] Sponsor list confirmation, Cnam logo (`#sponsors` section)
-- [ ] Talk submission and registration form links (`#submit` section, currently disabled buttons)
-- [ ] Exact 2024 edition dates in the Past Editions cards (currently Oct 17-18, 2024; verify)
+- [ ] Sponsor list confirmation (`#sponsors` section; Cnam, GDR RSD, GDR IASIS, Inria already in)
+- [ ] Talk submission and registration form links (`#submit` section, disabled "coming soon" buttons until the forms are ready)
+
+## Edition numbering
+
+The site says "4th Edition": 2023 IRIT/ENSEEIHT Toulouse (Oct 19-20, per irit.fr) -> 2024 Grenoble (Oct 17-18, called "deuxieme edition" by GDR IASIS) -> 2025 LAAS Toulouse -> 2026 Paris.
+If there was an earlier edition not documented online, bump the hero badge in `index.html`.
