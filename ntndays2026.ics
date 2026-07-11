@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//NTN Days//NTN Days 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ntndays2026@ntndays.space
+DTSTAMP:20260711T000000Z
+DTSTART;VALUE=DATE:20261013
+DTEND;VALUE=DATE:20261015
+SUMMARY:NTN Days 2026
+DESCRIPTION:NTN Days 2026 — the event dedicated to Non-Terrestrial Netwo
+ rks\, bringing together academic and industrial communities working on t
+ he challenges of non-terrestrial connectivity\, from the physical layer
+ to networking and standardization.\nhttps://ntndays.space/
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
