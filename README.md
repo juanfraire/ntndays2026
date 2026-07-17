@@ -22,7 +22,8 @@ DNS at Namecheap needs no changes; the domain is reassigned on the GitHub side o
 
 - [ ] Organizing committee list (`#committee` section)
 - [ ] Sponsor list confirmation (`#sponsors` section; Cnam, GDR RSD, GDR IASIS, Inria already in)
-- [ ] Talk submission and registration form links (`#submit` section, disabled "coming soon" buttons until the forms are ready)
+- [x] Talk submission form link (https://forms.gle/UmhKRHDkSfNrGEkp7, live in hero and `#submit`; responses in the Drive sheet in `2026-paris/`)
+- [ ] Registration form link (`#submit` section, disabled "coming soon" button until the form is ready)
 
 ## Edition numbering
 
