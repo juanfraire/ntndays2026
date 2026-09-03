@@ -37,7 +37,8 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 
 ## TODOs before launch
 
-- [ ] Organizing committee list (`#committee` section)
+- [x] Organizing committee list (`#committee`: Vania Conan and Pengwenlong Gu of Cnam, Juan A. Fraire of Inria,
+      listed alphabetically; add members here as they join)
 - [ ] Sponsor list confirmation (`#sponsors` section; Cnam, GDR RSD, GDR IASIS, Inria already in)
 - [x] Talk submission form link (live in hero and `#submit`)
 - [x] Registration form link (live in hero and `#submit`)
