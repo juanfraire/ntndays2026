@@ -57,6 +57,16 @@
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "image": ["https://ntndays.space/preview.jpg", "https://ntndays.space/ntn-days-logo-800.png"],
       "url": "https://ntndays.space/",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "name": "Free registration",
+        "url": "https://forms.gle/AoGMZSggLgMFyLUd7",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "validThrough": "2026-10-09T23:59:00+02:00"
+      },
       "location": {
         "@type": "Place",
         "name": "Cnam - Conservatoire national des arts et métiers",
@@ -264,17 +274,20 @@
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://forms.gle/UmhKRHDkSfNrGEkp7" target="_blank" rel="noopener noreferrer"
+                <a href="https://forms.gle/AoGMZSggLgMFyLUd7"
+                    target="_blank" rel="noopener noreferrer"
                     class="inline-flex items-center justify-center w-52 px-6 py-3 bg-gradient-to-r from-orbit-600 to-orbit-500 text-white rounded-full font-medium hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-orbit-900/40">
+                    Register
+                </a>
+                <a href="https://forms.gle/UmhKRHDkSfNrGEkp7" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center w-52 px-6 py-3 border border-gray-600 text-gray-200 bg-gray-900/60 rounded-full font-medium hover:bg-gray-800 transition">
                     Submit a Talk
                 </a>
-                <a href="#dates"
-                    class="inline-flex items-center justify-center w-52 px-6 py-3 border border-gray-600 text-gray-200 bg-gray-900/60 rounded-full font-medium hover:bg-gray-800 transition">
-                    Important Dates
-                </a>
             </div>
-            <p class="mt-6 text-sm text-gray-400 italic">
-                Talk submissions are open — deadline September 4, 2026.
+            <p class="mt-6 text-sm text-gray-300">
+                <span class="inline-block px-3 py-1 mr-2 text-xs font-semibold uppercase tracking-wide text-orbit-300 bg-orbit-900/40 border border-orbit-700/50 rounded-full">Registration open</span>
+                Free to attend, deadline October 9, 2026.
+                <a href="#dates" class="text-orbit-400 hover:underline">Talk submissions extended to September 11</a>.
             </p>
         </div>
     </section>
@@ -477,23 +490,33 @@
                 <div class="flex items-center justify-between bg-gray-900 border border-gray-800 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
                         <i class="fas fa-paper-plane text-orbit-400 mr-4"></i>
-                        <span class="text-gray-200">Initial Talk Submission Deadline</span>
+                        <span class="text-gray-200">
+                            Talk Submission Deadline
+                            <span class="ml-2 text-xs font-semibold uppercase tracking-wide text-orbit-300">Extended</span>
+                        </span>
                     </div>
-                    <strong class="text-white whitespace-nowrap ml-4">Sep 4, 2026</strong>
+                    <strong class="text-white whitespace-nowrap ml-4">Sep 11, 2026</strong>
                 </div>
                 <div class="flex items-center justify-between bg-gray-900 border border-gray-800 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
                         <i class="fas fa-list-alt text-orbit-400 mr-4"></i>
                         <span class="text-gray-200">Preliminary Program Published</span>
                     </div>
-                    <strong class="text-white whitespace-nowrap ml-4">Sep 11, 2026</strong>
+                    <strong class="text-white whitespace-nowrap ml-4">Sep 18, 2026</strong>
                 </div>
                 <div class="flex items-center justify-between bg-gray-900 border border-gray-800 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
                         <i class="fas fa-calendar-check text-orbit-400 mr-4"></i>
                         <span class="text-gray-200">Final Program</span>
                     </div>
-                    <strong class="text-white whitespace-nowrap ml-4">Sep 16, 2026</strong>
+                    <strong class="text-white whitespace-nowrap ml-4">Sep 23, 2026</strong>
+                </div>
+                <div class="flex items-center justify-between bg-gray-900 border border-orbit-700/50 rounded-xl px-6 py-4 card-hover">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-check text-orbit-400 mr-4"></i>
+                        <span class="text-gray-200">Registration Deadline</span>
+                    </div>
+                    <strong class="text-white whitespace-nowrap ml-4">Oct 9, 2026</strong>
                 </div>
                 <div class="flex items-center justify-between bg-gradient-to-r from-orbit-900/50 to-nebula-600/20 border border-orbit-700/50 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
@@ -519,24 +542,41 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Submit & Register</h2>
             <div class="w-24 h-1 bg-gradient-to-r from-orbit-500 to-nebula-500 mx-auto mb-6"></div>
             <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-10">
-                Share your work with the NTN community: propose a talk, present a poster as a PhD student, and join
-                two days of keynotes, thematic sessions, roundtables, and networking in Paris.
+                Registration is now open. Join two days of keynotes, thematic sessions, roundtables, and networking in
+                Paris, and share your work with the NTN community by proposing a talk or a PhD poster.
             </p>
 
-            <!-- TODO: replace # with the registration form link and remove the disabled styling once registration opens -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://forms.gle/UmhKRHDkSfNrGEkp7" target="_blank" rel="noopener noreferrer"
-                    class="px-8 py-3 bg-gradient-to-r from-orbit-600 to-orbit-500 text-white font-semibold rounded-full hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-orbit-900/40">
-                    Submit Talk Proposal
-                </a>
-                <a href="#"
-                    class="px-8 py-3 bg-gray-700 text-gray-400 font-semibold rounded-full cursor-not-allowed opacity-60 pointer-events-none"
-                    title="Registration opens soon">
-                    Register
-                </a>
+            <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
+                <div class="bg-gray-950 p-8 rounded-xl border border-orbit-700/50 flex flex-col">
+                    <div class="text-orbit-400 mb-4"><i class="fas fa-user-check text-3xl"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Register to Attend</h3>
+                    <p class="text-gray-400 text-sm mb-6 flex-grow">
+                        Attendance is free and open to everyone. Registration takes a minute and closes on
+                        October 9, 2026.
+                    </p>
+                    <a href="https://forms.gle/AoGMZSggLgMFyLUd7"
+                        target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-orbit-600 to-orbit-500 text-white font-semibold rounded-full hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-orbit-900/40">
+                        Register
+                    </a>
+                </div>
+
+                <div class="bg-gray-950 p-8 rounded-xl border border-gray-800 flex flex-col">
+                    <div class="text-nebula-400 mb-4"><i class="fas fa-paper-plane text-3xl"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Submit a Talk</h3>
+                    <p class="text-gray-400 text-sm mb-6 flex-grow">
+                        Talk and PhD poster proposals are welcome until the extended deadline of September 11, 2026.
+                    </p>
+                    <a href="https://forms.gle/UmhKRHDkSfNrGEkp7" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center px-8 py-3 border border-gray-600 text-gray-200 bg-gray-900/60 font-semibold rounded-full hover:bg-gray-800 transition">
+                        Submit Talk Proposal
+                    </a>
+                </div>
             </div>
-            <p class="mt-4 text-sm text-gray-500 italic">
-                Talk submissions are open until September 4, 2026. Registration will open closer to the event — stay tuned!
+
+            <p class="mt-8 text-sm text-gray-500">
+                Speakers also need to register. See <a href="#dates" class="text-orbit-400 hover:underline">Important
+                    Dates</a> for the full timeline.
             </p>
         </div>
     </section>
