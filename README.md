@@ -21,18 +21,22 @@ DNS at Namecheap needs no changes; the domain is reassigned on the GitHub side o
 ## Phases
 
 The site is currently in the **registration phase** (September 2026): registration is the primary call to action
-in the hero and in `#submit`, talk submissions run alongside it until the extended September 11 deadline.
+in the hero and in `#submit`, with poster submissions (added September 20) and late talk proposals alongside it.
 
 | Item | Link |
 |---|---|
 | Talk proposal form | https://forms.gle/UmhKRHDkSfNrGEkp7 |
 | Talk proposal responses | https://docs.google.com/spreadsheets/d/18OI1zD9SVkUh16DTGt0tXX0EdQs_OQJog6knp8P9jTY/edit |
+| Poster submission form | https://docs.google.com/forms/d/e/1FAIpQLSdAcNgzOky8qzgOTUsZ9cEYKQzEBB2O6W5hUOFmbrwaHP0mCA/viewform |
+| Poster submission form (edit) | https://docs.google.com/forms/d/1y85uWvPos-yHrr1Jln-g85tR1AbLDrDRvJANMb9mCEU/edit |
+| Poster submission responses | https://docs.google.com/spreadsheets/d/1hm3USHkottdOjv9hhIRGHjZK7hfx6iuuDf3115GN7Rg/edit |
 | Registration form | https://forms.gle/AoGMZSggLgMFyLUd7 |
 | Registration form (edit) | https://docs.google.com/forms/d/1tCwBB9s-FZgVO5gmnDsu2YVplRTKfytsOsl-8L7bITE/edit |
 | Registration responses | https://docs.google.com/spreadsheets/d/1trkjRsTSPzKN3KcxrSR8UfgkMnUwNYvQNYIKG20-qzI/edit |
 
-Dates shown on the site: talk submission September 11, preliminary program September 18, final program
-September 23, registration deadline October 9, event October 13-14.
+Dates shown on the site: talk submission September 11 (past, tagged "late proposals considered"), preliminary
+program September 18, final program September 23, poster submission and registration deadlines October 9,
+event October 13-14.
 Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offers` node in the Event JSON-LD.
 
 ## TODOs before launch
@@ -42,6 +46,10 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [ ] Sponsor list confirmation (`#sponsors` section; Cnam, GDR RSD, GDR IASIS, Inria already in)
 - [x] Talk submission form link (live in hero and `#submit`)
 - [x] Registration form link (live in hero and `#submit`)
+- [x] Poster submission form link (live in hero and `#submit`)
+- [x] Poster form: responses spreadsheet linked
+- [ ] Poster form: mint a forms.gle short link, then swap it into `index.html` and this table
+- [ ] Poster form: upload the poster banner as header image (Forms UI > Customize theme); the API cannot
 - [x] Registration responses spreadsheet linked
 
 ## Edition numbering
