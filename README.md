@@ -27,7 +27,7 @@ in the hero and in `#submit`, with poster submissions (added September 20) and l
 |---|---|
 | Talk proposal form | https://forms.gle/UmhKRHDkSfNrGEkp7 |
 | Talk proposal responses | https://docs.google.com/spreadsheets/d/18OI1zD9SVkUh16DTGt0tXX0EdQs_OQJog6knp8P9jTY/edit |
-| Poster submission form | https://docs.google.com/forms/d/e/1FAIpQLSdAcNgzOky8qzgOTUsZ9cEYKQzEBB2O6W5hUOFmbrwaHP0mCA/viewform |
+| Poster submission form | https://forms.gle/5kEsRvi6QpbvHxTHA |
 | Poster submission form (edit) | https://docs.google.com/forms/d/1y85uWvPos-yHrr1Jln-g85tR1AbLDrDRvJANMb9mCEU/edit |
 | Poster submission responses | https://docs.google.com/spreadsheets/d/1hm3USHkottdOjv9hhIRGHjZK7hfx6iuuDf3115GN7Rg/edit |
 | Registration form | https://forms.gle/AoGMZSggLgMFyLUd7 |
@@ -48,7 +48,7 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [x] Registration form link (live in hero and `#submit`)
 - [x] Poster submission form link (live in hero and `#submit`)
 - [x] Poster form: responses spreadsheet linked
-- [ ] Poster form: mint a forms.gle short link, then swap it into `index.html` and this table
+- [x] Poster form: forms.gle short link live in `index.html`
 - [ ] Poster form: upload the poster banner as header image (Forms UI > Customize theme); the API cannot
 - [x] Registration responses spreadsheet linked
 
