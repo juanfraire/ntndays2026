@@ -67,7 +67,7 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [ ] Poster form: upload the poster banner as header image (Forms UI > Customize theme); the API cannot
 - [x] Registration responses spreadsheet linked
 - [x] Program section (`#program`, preliminary, September 22)
-- [ ] Program: keynote titles (Fawaz, Baccelli), roundtable theme and panel, session chairs if wanted
+- [ ] Program: Fawaz keynote title, Baccelli to confirm the derived title/abstract, roundtable theme and panel, session chairs if wanted
 - [ ] Program: replace the all-day `ntndays2026.ics` with per-day timed events once the program is final
 
 ## Edition numbering
