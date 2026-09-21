@@ -21,7 +21,8 @@ DNS at Namecheap needs no changes; the domain is reassigned on the GitHub side o
 ## Phases
 
 The site is currently in the **registration phase** (September 2026): registration is the primary call to action
-in the hero and in `#submit`, with poster submissions (added September 20) and late talk proposals alongside it.
+in the hero and in `#submit`, with poster submissions (added September 20) alongside it. Talk submissions closed
+on September 21 (the form link was removed from the site; the Important Dates row is tagged "Closed, under review").
 
 | Item | Link |
 |---|---|
@@ -34,7 +35,7 @@ in the hero and in `#submit`, with poster submissions (added September 20) and l
 | Registration form (edit) | https://docs.google.com/forms/d/1tCwBB9s-FZgVO5gmnDsu2YVplRTKfytsOsl-8L7bITE/edit |
 | Registration responses | https://docs.google.com/spreadsheets/d/1trkjRsTSPzKN3KcxrSR8UfgkMnUwNYvQNYIKG20-qzI/edit |
 
-Dates shown on the site: talk submission September 11 (past, tagged "late proposals considered"), preliminary
+Dates shown on the site: talk submission September 11 (closed, under review), preliminary
 program September 18, final program September 23, poster submission and registration deadlines October 9,
 event October 13-14.
 Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offers` node in the Event JSON-LD.
@@ -44,7 +45,7 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [x] Organizing committee list (`#committee`: Vania Conan and Pengwenlong Gu of Cnam, Juan A. Fraire of Inria,
       listed alphabetically; add members here as they join)
 - [ ] Sponsor list confirmation (`#sponsors` section; Cnam, GDR RSD, GDR IASIS, Inria already in)
-- [x] Talk submission form link (live in hero and `#submit`)
+- [x] Talk submission form link (was live in hero and `#submit`; removed September 21 when talk review started)
 - [x] Registration form link (live in hero and `#submit`)
 - [x] Poster submission form link (live in hero and `#submit`)
 - [x] Poster form: responses spreadsheet linked
