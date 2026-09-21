@@ -191,6 +191,191 @@
         #stars-canvas {
             pointer-events: none;
         }
+
+        /* Program timeline */
+        .program-tab {
+            padding: 0.6rem 1rem;
+            border: 1px solid #374151;
+            border-radius: 0.75rem;
+            background: #111827;
+            color: #9ca3af;
+            text-align: center;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+        }
+
+        .program-tab:hover {
+            color: #f3f4f6;
+            border-color: #6b7280;
+        }
+
+        .program-tab[aria-selected="true"] {
+            color: #ffffff;
+            border-color: rgba(249, 115, 22, 0.6);
+            background: linear-gradient(90deg, rgba(124, 45, 18, 0.5), rgba(124, 58, 237, 0.2));
+        }
+
+        .program-time {
+            flex: 0 0 6rem;
+            font-variant-numeric: tabular-nums;
+            font-size: 0.8rem;
+            color: #6b7280;
+            padding-top: 0.1rem;
+        }
+
+        /* Stacked on phones: the time sits above the title, so no fixed column width */
+        .program-keynote > .program-time,
+        .program-session-head > .program-time {
+            flex-basis: auto;
+        }
+
+        .program-slot {
+            position: relative;
+        }
+
+        .program-break {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .program-break .program-icon {
+            width: 1rem;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        .program-keynote {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(194, 65, 12, 0.5);
+            background: linear-gradient(90deg, rgba(124, 45, 18, 0.5), rgba(124, 58, 237, 0.2));
+        }
+
+        .program-session {
+            border-radius: 0.75rem;
+            border: 1px solid #1f2937;
+            background: #111827;
+            overflow: hidden;
+        }
+
+        .program-session-head {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding: 0.75rem 1.25rem;
+            border-bottom: 1px solid #1f2937;
+            background: rgba(3, 7, 18, 0.5);
+        }
+
+        .program-session-tag {
+            display: inline-block;
+            margin-right: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #c4b5fd;
+        }
+
+        .program-talk {
+            position: relative;
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .program-talk-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            line-height: 1.35;
+            color: #f3f4f6;
+        }
+
+        .program-talk-who {
+            margin-top: 0.15rem;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .program-talk-who span {
+            color: #6b7280;
+        }
+
+        @media (min-width: 640px) {
+            .program-keynote,
+            .program-session-head {
+                flex-direction: row;
+                align-items: baseline;
+                gap: 1rem;
+            }
+
+            .program-keynote {
+                align-items: flex-start;
+            }
+
+            .program-keynote > .program-time,
+            .program-session-head > .program-time {
+                flex-basis: 6rem;
+            }
+        }
+
+        @media (max-width: 639px) {
+            .program-talk {
+                gap: 0.75rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .program-talk .program-time {
+                flex-basis: 2.75rem;
+            }
+
+            .program-break .program-time {
+                flex-basis: 5.5rem;
+            }
+
+            .program-break,
+            .program-keynote,
+            .program-session-head {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        /* Slot in progress (set by script during the event, Paris time) */
+        .program-now {
+            box-shadow: 0 0 0 2px #fb923c;
+            border-radius: 0.75rem;
+        }
+
+        .program-now::after {
+            content: 'Now';
+            position: absolute;
+            top: -0.6rem;
+            right: 0.75rem;
+            padding: 0.05rem 0.5rem;
+            border-radius: 9999px;
+            background: #f97316;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        @media print {
+            .program-tab-bar { display: none; }
+            .program-day { display: block !important; }
+            .program-print-title { display: block !important; margin: 1.5rem 0 0.75rem; }
+            .program-now { box-shadow: none; }
+            .program-now::after { display: none; }
+        }
     </style>
 </head>
 
@@ -208,6 +393,7 @@
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="#about" class="nav-link text-gray-300 hover:text-white text-sm font-medium">About</a>
                     <a href="#topics" class="nav-link text-gray-300 hover:text-white text-sm font-medium">Topics</a>
+                    <a href="#program" class="nav-link text-gray-300 hover:text-white text-sm font-medium">Program</a>
                     <a href="#dates" class="nav-link text-gray-300 hover:text-white text-sm font-medium">Dates</a>
                     <a href="#venue" class="nav-link text-gray-300 hover:text-white text-sm font-medium">Venue</a>
                     <a href="#editions" class="nav-link text-gray-300 hover:text-white text-sm font-medium">Past Editions</a>
@@ -229,6 +415,7 @@
             <div class="flex flex-col space-y-4">
                 <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
                 <a href="#topics" class="text-gray-300 hover:text-white transition">Topics</a>
+                <a href="#program" class="text-gray-300 hover:text-white transition">Program</a>
                 <a href="#dates" class="text-gray-300 hover:text-white transition">Dates</a>
                 <a href="#venue" class="text-gray-300 hover:text-white transition">Venue</a>
                 <a href="#editions" class="text-gray-300 hover:text-white transition">Past Editions</a>
@@ -274,9 +461,12 @@
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-4">
-                <a href="https://forms.gle/AoGMZSggLgMFyLUd7"
-                    target="_blank" rel="noopener noreferrer"
+                <a href="#program"
                     class="inline-flex items-center justify-center w-52 px-6 py-3 bg-gradient-to-r from-orbit-600 to-orbit-500 text-white rounded-full font-medium hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-orbit-900/40">
+                    <i class="far fa-calendar-alt mr-2"></i>Program
+                </a>
+                <a href="https://forms.gle/AoGMZSggLgMFyLUd7" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center w-52 px-6 py-3 border border-gray-600 text-gray-200 bg-gray-900/60 rounded-full font-medium hover:bg-gray-800 transition">
                     Register
                 </a>
                 <a href="https://forms.gle/5kEsRvi6QpbvHxTHA" target="_blank" rel="noopener noreferrer"
@@ -287,7 +477,7 @@
             <p class="mt-6 text-sm text-gray-300">
                 <span class="inline-block px-3 py-1 mr-2 text-xs font-semibold uppercase tracking-wide text-orbit-300 bg-orbit-900/40 border border-orbit-700/50 rounded-full">Registration open</span>
                 Free to attend. Registration and poster submissions close October 9, 2026.
-                Talk submissions are closed and <a href="#dates" class="text-orbit-400 hover:underline">under review</a>.
+                The <a href="#program" class="text-orbit-400 hover:underline">preliminary program</a> is online.
             </p>
         </div>
     </section>
@@ -478,8 +668,368 @@
         </div>
     </section>
 
+    <!-- Program Section -->
+    <section id="program" class="py-20 bg-gray-950">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Program</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-orbit-500 to-nebula-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-lg text-gray-300">
+                    Two keynotes, four technical sessions, a poster session and a roundtable over two days at Cnam.
+                    Talks are 15 minutes including questions. All times are Paris time (CEST).
+                </p>
+                <p class="mt-3 text-sm text-gray-500">
+                    Preliminary program, September 22, 2026. Keynote titles and the roundtable panel will be announced.
+                </p>
+            </div>
+
+            <!-- Day tabs -->
+            <div class="program-tab-bar sticky top-16 z-30 -mx-4 px-4 py-3 bg-gray-950/95 backdrop-blur-md sm:mx-0 sm:px-0">
+                <div class="grid grid-cols-2 gap-3 max-w-md mx-auto" role="tablist" aria-label="Program days">
+                    <button type="button" class="program-tab" role="tab" data-day="1" aria-selected="true" aria-controls="program-day1">
+                        <span class="block text-xs font-semibold uppercase tracking-wide">Day 1</span>
+                        <span class="block font-bold"><span class="sm:hidden">Tue, Oct 13</span><span class="hidden sm:inline">Tuesday, Oct 13</span></span>
+                    </button>
+                    <button type="button" class="program-tab" role="tab" data-day="2" aria-selected="false" aria-controls="program-day2">
+                        <span class="block text-xs font-semibold uppercase tracking-wide">Day 2</span>
+                        <span class="block font-bold"><span class="sm:hidden">Wed, Oct 14</span><span class="hidden sm:inline">Wednesday, Oct 14</span></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Day 1 -->
+            <div id="program-day1" class="program-day space-y-3 mt-6" data-day="1" role="tabpanel">
+                <h3 class="program-print-title hidden text-2xl font-bold text-white">Day 1 &mdash; Tuesday, October 13</h3>
+
+                <div class="program-slot program-break" data-start="08:30" data-end="09:00">
+                    <span class="program-time">08:30 &ndash; 09:00</span>
+                    <i class="fas fa-mug-hot program-icon"></i>
+                    <span>Welcome coffee, registration and poster setup</span>
+                </div>
+
+                <div class="program-slot program-break" data-start="09:00" data-end="09:15">
+                    <span class="program-time">09:00 &ndash; 09:15</span>
+                    <i class="fas fa-door-open program-icon"></i>
+                    <span>Opening &middot; Vania Conan, Pengwenlong Gu, Juan A. Fraire</span>
+                </div>
+
+                <div class="program-slot program-keynote" data-start="09:15" data-end="10:00">
+                    <span class="program-time text-orbit-300">09:15 &ndash; 10:00</span>
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wide text-orbit-300 mb-1">
+                            <i class="fas fa-microphone mr-1"></i>Keynote
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Hassan Fawaz <span class="font-normal text-gray-300">&middot; Univity</span></h3>
+                        <p class="text-sm text-gray-400 italic mt-1">Title to be announced</p>
+                    </div>
+                </div>
+
+                <div class="program-slot program-break" data-start="10:00" data-end="10:30">
+                    <span class="program-time">10:00 &ndash; 10:30</span>
+                    <i class="fas fa-mug-hot program-icon"></i>
+                    <span>Coffee break</span>
+                </div>
+
+                <div class="program-slot program-session" data-start="10:30" data-end="12:00">
+                    <div class="program-session-head">
+                        <span class="program-time text-orbit-300">10:30 &ndash; 12:00</span>
+                        <h3 class="font-bold text-white">
+                            <span class="program-session-tag">Session 1</span>
+                            Programmes, access, interference and spectrum
+                        </h3>
+                    </div>
+                    <ol class="divide-y divide-gray-800/70">
+                        <li class="program-talk" data-start="10:30" data-end="10:45">
+                            <span class="program-time">10:30</span>
+                            <div>
+                                <p class="program-talk-title">IRIS&sup2;, a catalyst for 5G NTN and European technological sovereignty</p>
+                                <p class="program-talk-who">Flavien Ronteix <span>&middot; EC-JRC</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="10:45" data-end="11:00">
+                            <span class="program-time">10:45</span>
+                            <div>
+                                <p class="program-talk-title">Standalone standard satellite-aided Internet connectivity</p>
+                                <p class="program-talk-who">Nicola Accettura <span>&middot; LAAS-CNRS</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="11:00" data-end="11:15">
+                            <span class="program-time">11:00</span>
+                            <div>
+                                <p class="program-talk-title">Beyond coverage: how mega-constellations will shape the future of non-terrestrial networks</p>
+                                <p class="program-talk-who">Ali Khalesi <span>&middot; IPSA, LINCS</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="11:15" data-end="11:30">
+                            <span class="program-time">11:15</span>
+                            <div>
+                                <p class="program-talk-title">Interference-aware beam hopping scheduling for LEO satellite networks using soft-conflict graph coloring</p>
+                                <p class="program-talk-who">Jihane Lghoury <span>&middot; IRIT, Ericsson</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="11:30" data-end="11:45">
+                            <span class="program-time">11:30</span>
+                            <div>
+                                <p class="program-talk-title">Doppler-Shannon association framework for non-terrestrial networks: going beyond closest point association</p>
+                                <p class="program-talk-who">Ashutosh Balakrishnan <span>&middot; T&eacute;l&eacute;com Paris</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="11:45" data-end="12:00">
+                            <span class="program-time">11:45</span>
+                            <div>
+                                <p class="program-talk-title">Radio astronomy protection for direct-to-device applications</p>
+                                <p class="program-talk-who">Federico Di Vruno <span>&middot; SKAO</span></p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="program-slot program-break" data-start="12:00" data-end="13:30">
+                    <span class="program-time">12:00 &ndash; 13:30</span>
+                    <i class="fas fa-utensils program-icon"></i>
+                    <span>Lunch &middot; posters on display</span>
+                </div>
+
+                <div class="program-slot program-session" data-start="13:30" data-end="14:45">
+                    <div class="program-session-head">
+                        <span class="program-time text-orbit-300">13:30 &ndash; 14:45</span>
+                        <h3 class="font-bold text-white">
+                            <span class="program-session-tag">Session 2</span>
+                            Waveforms and access for satellite IoT
+                        </h3>
+                    </div>
+                    <ol class="divide-y divide-gray-800/70">
+                        <li class="program-talk" data-start="13:30" data-end="13:45">
+                            <span class="program-time">13:30</span>
+                            <div>
+                                <p class="program-talk-title">Chirp-based waveform design for next generation non-terrestrial networks</p>
+                                <p class="program-talk-who">Omar El Marzougui <span>&middot; Toulouse INP, IRIT</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="13:45" data-end="14:00">
+                            <span class="program-time">13:45</span>
+                            <div>
+                                <p class="program-talk-title">Study of ODDM on NTN channels for LEO satellite communications</p>
+                                <p class="program-talk-who">Antony Pottier <span>&middot; CEA-Leti</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="14:00" data-end="14:15">
+                            <span class="program-time">14:00</span>
+                            <div>
+                                <p class="program-talk-title">NTN-IoT performance survey: from simulation to in-orbit testing</p>
+                                <p class="program-talk-who">Antonin Le Floch <span>&middot; Kin&eacute;is</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="14:15" data-end="14:30">
+                            <span class="program-time">14:15</span>
+                            <div>
+                                <p class="program-talk-title">Kin&eacute;is wide area network for satellite IoT: performance and protocol optimisation</p>
+                                <p class="program-talk-who">Vincent Deslandes <span>&middot; Kin&eacute;is</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="14:30" data-end="14:45">
+                            <span class="program-time">14:30</span>
+                            <div>
+                                <p class="program-talk-title">From ground to space: efficient downlink scheduling for direct-to-satellite LoRaWAN</p>
+                                <p class="program-talk-who">Carlos Fernandez Hernandez <span>&middot; INSA Lyon, Inria</span></p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="program-slot program-break" data-start="14:45" data-end="15:15">
+                    <span class="program-time">14:45 &ndash; 15:15</span>
+                    <i class="fas fa-mug-hot program-icon"></i>
+                    <span>Coffee break</span>
+                </div>
+
+                <div class="program-slot program-keynote" data-start="15:15" data-end="16:30">
+                    <span class="program-time text-nebula-300">15:15 &ndash; 16:30</span>
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wide text-nebula-300 mb-1">
+                            <i class="fas fa-image mr-1"></i>Poster session
+                        </div>
+                        <h3 class="text-lg font-bold text-white">PhD student posters</h3>
+                        <p class="text-sm text-gray-400 mt-1">
+                            Presenters stand by their posters. Poster proposals are welcome until October 9, 2026.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="program-slot program-break" data-start="16:30" data-end="16:45">
+                    <span class="program-time">16:30 &ndash; 16:45</span>
+                    <i class="fas fa-flag-checkered program-icon"></i>
+                    <span>Day 1 wrap-up</span>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div id="program-day2" class="program-day space-y-3 mt-6 hidden" data-day="2" role="tabpanel">
+                <h3 class="program-print-title hidden text-2xl font-bold text-white">Day 2 &mdash; Wednesday, October 14</h3>
+
+                <div class="program-slot program-break" data-start="08:30" data-end="09:00">
+                    <span class="program-time">08:30 &ndash; 09:00</span>
+                    <i class="fas fa-mug-hot program-icon"></i>
+                    <span>Breakfast</span>
+                </div>
+
+                <div class="program-slot program-keynote" data-start="09:00" data-end="09:45">
+                    <span class="program-time text-orbit-300">09:00 &ndash; 09:45</span>
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wide text-orbit-300 mb-1">
+                            <i class="fas fa-microphone mr-1"></i>Keynote
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Fran&ccedil;ois Baccelli <span class="font-normal text-gray-300">&middot; Inria, T&eacute;l&eacute;com Paris, LINCS</span></h3>
+                        <p class="text-sm text-gray-400 italic mt-1">Title to be announced</p>
+                    </div>
+                </div>
+
+                <div class="program-slot program-break" data-start="09:45" data-end="10:15">
+                    <span class="program-time">09:45 &ndash; 10:15</span>
+                    <i class="fas fa-mug-hot program-icon"></i>
+                    <span>Coffee break &middot; posters on display</span>
+                </div>
+
+                <div class="program-slot program-session" data-start="10:15" data-end="11:45">
+                    <div class="program-session-head">
+                        <span class="program-time text-orbit-300">10:15 &ndash; 11:45</span>
+                        <h3 class="font-bold text-white">
+                            <span class="program-session-tag">Session 3</span>
+                            Constellation dynamics, emulation and orbital computing
+                        </h3>
+                    </div>
+                    <ol class="divide-y divide-gray-800/70">
+                        <li class="program-talk" data-start="10:15" data-end="10:30">
+                            <span class="program-time">10:15</span>
+                            <div>
+                                <p class="program-talk-title">Handover dynamics in LEO non-terrestrial networks: a stochastic-geometry approach</p>
+                                <p class="program-talk-who">Emanuele Mengoli <span>&middot; T&eacute;l&eacute;com Paris, Inria</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="10:30" data-end="10:45">
+                            <span class="program-time">10:30</span>
+                            <div>
+                                <p class="program-talk-title">Location leakage from Starlink satellite switching: what end-to-end RTTs and public ephemerides reveal to a remote endpoint</p>
+                                <p class="program-talk-who">Yanis Maatouk <span>&middot; Sorbonne Universit&eacute;</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="10:45" data-end="11:00">
+                            <span class="program-time">10:45</span>
+                            <div>
+                                <p class="program-talk-title">Seasonal statistics of Shannon rate in a dynamical Poisson-Voronoi cellular network</p>
+                                <p class="program-talk-who">Sanjoy Kumar Jhawar <span>&middot; T&eacute;l&eacute;com Paris, Inria</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="11:00" data-end="11:15">
+                            <span class="program-time">11:00</span>
+                            <div>
+                                <p class="program-talk-title">SatComTopology and SatGoNetEm: a flexible platform for dynamic satellite-network experimentation</p>
+                                <p class="program-talk-who">Louis Barbier <span>&middot; ISAE-SUPAERO</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="11:15" data-end="11:30">
+                            <span class="program-time">11:15</span>
+                            <div>
+                                <p class="program-talk-title">CERES, a satellite constellation network emulator</p>
+                                <p class="program-talk-who">Bastien Tauran <span>&middot; Viveris Technologies</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="11:30" data-end="11:45">
+                            <span class="program-time">11:30</span>
+                            <div>
+                                <p class="program-talk-title">Ungrounded computing in low-Earth orbit</p>
+                                <p class="program-talk-who">Juan A. Fraire <span>&middot; Inria, INSA Lyon</span></p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="program-slot program-break" data-start="11:45" data-end="13:00">
+                    <span class="program-time">11:45 &ndash; 13:00</span>
+                    <i class="fas fa-utensils program-icon"></i>
+                    <span>Lunch</span>
+                </div>
+
+                <div class="program-slot program-session" data-start="13:00" data-end="14:15">
+                    <div class="program-session-head">
+                        <span class="program-time text-orbit-300">13:00 &ndash; 14:15</span>
+                        <h3 class="font-bold text-white">
+                            <span class="program-session-tag">Session 4</span>
+                            Small satellites, DTN and the Solar System Internet
+                        </h3>
+                    </div>
+                    <ol class="divide-y divide-gray-800/70">
+                        <li class="program-talk" data-start="13:00" data-end="13:15">
+                            <span class="program-time">13:00</span>
+                            <div>
+                                <p class="program-talk-title">On the optimal number of relays for nanosatellite swarm downlink under ground station reconfiguration overhead</p>
+                                <p class="program-talk-who">Nicolas Gresset-Bourgeois <span>&middot; T&eacute;SA</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="13:15" data-end="13:30">
+                            <span class="program-time">13:15</span>
+                            <div>
+                                <p class="program-talk-title">ThingSat: an in-orbit research vehicle for experimenting with satellite IoT</p>
+                                <p class="program-talk-who">Charl&eacute;lie Pignol <span>&middot; UGA, CSUG, LIG</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="13:30" data-end="13:45">
+                            <span class="program-time">13:30</span>
+                            <div>
+                                <p class="program-talk-title">CSPCL: a stepwise, non-disruptive transition to Delay-Tolerant Networking for CubeSat operators</p>
+                                <p class="program-talk-who">Sarah Theoulle <span>&middot; LIRMM</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="13:45" data-end="14:00">
+                            <span class="program-time">13:45</span>
+                            <div>
+                                <p class="program-talk-title">A tool suite towards a Solar System Internet digital twin</p>
+                                <p class="program-talk-who">Alice Le Bihan <span>&middot; INSA Lyon</span></p>
+                            </div>
+                        </li>
+                        <li class="program-talk" data-start="14:00" data-end="14:15">
+                            <span class="program-time">14:00</span>
+                            <div>
+                                <p class="program-talk-title">Lifespan-aware contact plan design for interplanetary free-space optical networks</p>
+                                <p class="program-talk-who">Alejandro Matias Toledo <span>&middot; Concordia University</span></p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="program-slot program-break" data-start="14:15" data-end="14:40">
+                    <span class="program-time">14:15 &ndash; 14:40</span>
+                    <i class="fas fa-pause program-icon"></i>
+                    <span>Break</span>
+                </div>
+
+                <div class="program-slot program-keynote" data-start="14:40" data-end="15:40">
+                    <span class="program-time text-nebula-300">14:40 &ndash; 15:40</span>
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wide text-nebula-300 mb-1">
+                            <i class="fas fa-comments mr-1"></i>Roundtable
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Theme and panel to be announced</h3>
+                    </div>
+                </div>
+
+                <div class="program-slot program-break" data-start="15:40" data-end="16:00">
+                    <span class="program-time">15:40 &ndash; 16:00</span>
+                    <i class="fas fa-flag-checkered program-icon"></i>
+                    <span>Closing</span>
+                </div>
+            </div>
+
+            <p class="text-center mt-10 text-sm text-gray-500">
+                Speakers: 15 minutes per talk, 12 for the presentation and 3 for questions.
+                <a href="ntndays2026.ics" download class="text-orbit-400 hover:underline whitespace-nowrap">
+                    <i class="far fa-calendar-plus mr-1"></i>Add to calendar (.ics)</a>
+            </p>
+        </div>
+    </section>
+
     <!-- Important Dates Section -->
-    <section id="dates" class="py-20 bg-gray-950">
+    <section id="dates" class="py-20 bg-gray-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Important Dates</h2>
@@ -487,38 +1037,41 @@
             </div>
 
             <div class="space-y-4">
-                <div class="flex items-center justify-between bg-gray-900 border border-gray-800 rounded-xl px-6 py-4 card-hover">
+                <div class="flex items-center justify-between bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
                         <i class="fas fa-paper-plane text-orbit-400 mr-4"></i>
                         <span class="text-gray-200">
                             Talk Submission Deadline
-                            <span class="ml-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Closed, under review</span>
+                            <span class="ml-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Closed</span>
                         </span>
                     </div>
                     <strong class="text-white whitespace-nowrap ml-4">Sep 11, 2026</strong>
                 </div>
-                <div class="flex items-center justify-between bg-gray-900 border border-gray-800 rounded-xl px-6 py-4 card-hover">
+                <div class="flex items-center justify-between bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
                         <i class="fas fa-list-alt text-orbit-400 mr-4"></i>
-                        <span class="text-gray-200">Preliminary Program Published</span>
+                        <span class="text-gray-200">
+                            Preliminary Program Published
+                            <a href="#program" class="ml-2 text-xs font-semibold uppercase tracking-wide text-orbit-300 hover:underline">See program</a>
+                        </span>
                     </div>
-                    <strong class="text-white whitespace-nowrap ml-4">Sep 18, 2026</strong>
+                    <strong class="text-white whitespace-nowrap ml-4">Sep 22, 2026</strong>
                 </div>
-                <div class="flex items-center justify-between bg-gray-900 border border-gray-800 rounded-xl px-6 py-4 card-hover">
+                <div class="flex items-center justify-between bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
                         <i class="fas fa-calendar-check text-orbit-400 mr-4"></i>
                         <span class="text-gray-200">Final Program</span>
                     </div>
                     <strong class="text-white whitespace-nowrap ml-4">Sep 23, 2026</strong>
                 </div>
-                <div class="flex items-center justify-between bg-gray-900 border border-orbit-700/50 rounded-xl px-6 py-4 card-hover">
+                <div class="flex items-center justify-between bg-gray-950 border border-orbit-700/50 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
                         <i class="fas fa-image text-orbit-400 mr-4"></i>
                         <span class="text-gray-200">Poster Submission Deadline</span>
                     </div>
                     <strong class="text-white whitespace-nowrap ml-4">Oct 9, 2026</strong>
                 </div>
-                <div class="flex items-center justify-between bg-gray-900 border border-orbit-700/50 rounded-xl px-6 py-4 card-hover">
+                <div class="flex items-center justify-between bg-gray-950 border border-orbit-700/50 rounded-xl px-6 py-4 card-hover">
                     <div class="flex items-center">
                         <i class="fas fa-user-check text-orbit-400 mr-4"></i>
                         <span class="text-gray-200">Registration Deadline</span>
@@ -544,7 +1097,7 @@
     </section>
 
     <!-- Submit & Register Section -->
-    <section id="submit" class="py-20 bg-gray-900">
+    <section id="submit" class="py-20 bg-gray-950">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Submit & Register</h2>
             <div class="w-24 h-1 bg-gradient-to-r from-orbit-500 to-nebula-500 mx-auto mb-6"></div>
@@ -554,7 +1107,7 @@
             </p>
 
             <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
-                <div class="bg-gray-950 p-8 rounded-xl border border-orbit-700/50 flex flex-col">
+                <div class="bg-gray-900 p-8 rounded-xl border border-orbit-700/50 flex flex-col">
                     <div class="text-orbit-400 mb-4"><i class="fas fa-user-check text-3xl"></i></div>
                     <h3 class="text-xl font-bold text-white mb-2">Register to Attend</h3>
                     <p class="text-gray-400 text-sm mb-6 flex-grow">
@@ -568,7 +1121,7 @@
                     </a>
                 </div>
 
-                <div class="bg-gray-950 p-8 rounded-xl border border-gray-800 flex flex-col">
+                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 flex flex-col">
                     <div class="text-nebula-400 mb-4"><i class="fas fa-image text-3xl"></i></div>
                     <h3 class="text-xl font-bold text-white mb-2">Submit a Poster</h3>
                     <p class="text-gray-400 text-sm mb-6 flex-grow">
@@ -583,8 +1136,9 @@
             </div>
 
             <p class="mt-8 text-sm text-gray-500">
-                Talk submissions closed on September 11, 2026 and are now under review; the program will be published
-                shortly. Speakers and poster presenters also need to register. See
+                Talk submissions closed on September 11, 2026; accepted talks are listed in the
+                <a href="#program" class="text-orbit-400 hover:underline">program</a>. Speakers and poster presenters
+                also need to register. See
                 <a href="#dates" class="text-orbit-400 hover:underline">Important Dates</a> for the full timeline.
             </p>
         </div>
@@ -749,6 +1303,42 @@
                 document.getElementById('mobile-menu').classList.add('hidden');
             });
         });
+
+        // Program day tabs; during the event, open today's day and mark the slot in progress (Paris time)
+        (function () {
+            const dates = { '1': '2026-10-13', '2': '2026-10-14' };
+            const tabs = document.querySelectorAll('.program-tab');
+            const panels = document.querySelectorAll('.program-day');
+            if (!tabs.length) return;
+
+            function showDay(day) {
+                tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.day === day)));
+                panels.forEach(p => p.classList.toggle('hidden', p.dataset.day !== day));
+            }
+            tabs.forEach(t => t.addEventListener('click', () => showDay(t.dataset.day)));
+
+            const parts = {};
+            new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+            }).formatToParts(new Date()).forEach(p => { parts[p.type] = p.value; });
+            const today = `${parts.year}-${parts.month}-${parts.day}`;
+            const now = `${parts.hour}:${parts.minute}`;
+            const todayDay = Object.keys(dates).find(d => dates[d] === today);
+
+            const hashDay = (location.hash.match(/^#program-day([12])$/) || [])[1];
+            showDay(hashDay || todayDay || '1');
+
+            if (todayDay) {
+                document.querySelectorAll(`#program-day${todayDay} [data-start]`).forEach(el => {
+                    const live = el.dataset.start <= now && now < el.dataset.end;
+                    // Highlight the innermost live element: a talk rather than its whole session
+                    const hasLiveChild = live && Array.from(el.querySelectorAll('[data-start]'))
+                        .some(c => c.dataset.start <= now && now < c.dataset.end);
+                    if (live && !hasLiveChild) el.classList.add('program-now');
+                });
+            }
+        })();
 
         // Twinkling stars on the hero canvas
         (function () {

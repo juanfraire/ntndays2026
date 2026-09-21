@@ -20,9 +20,23 @@ DNS at Namecheap needs no changes; the domain is reassigned on the GitHub side o
 
 ## Phases
 
-The site is currently in the **registration phase** (September 2026): registration is the primary call to action
-in the hero and in `#submit`, with poster submissions (added September 20) alongside it. Talk submissions closed
-on September 21 (the form link was removed from the site; the Important Dates row is tagged "Closed, under review").
+The site is in the **program phase** (September 22, 2026): the preliminary program is online in `#program`,
+"Program" is the primary hero button and a nav entry, registration (free, until October 9) and poster
+submissions stay open alongside it. Talk submissions closed on September 21.
+
+### Program section
+
+`#program` is static HTML (no data file): two day panels (`#program-day1`, `#program-day2`) switched by the
+sticky day tabs, each a list of slots. Three slot kinds share the `program-*` CSS classes defined in the
+`<style>` block: `program-break` (one-line rows: coffee, lunch, opening, closing), `program-keynote`
+(highlighted card, also used for the poster session and the roundtable) and `program-session` (header plus
+an `<ol>` of `program-talk` rows: time, title, presenter, affiliation). Every slot and talk carries
+`data-start`/`data-end` (HH:MM, Paris time); on October 13 and 14 the script at the bottom of the page opens
+that day's tab and adds `program-now` to the slot in progress. `#program-day2` in the URL opens Day 2.
+Print CSS shows both days flat.
+
+The editorial source is `../2026-paris/PROGRAM.md` (session assignments, keynote status, open decisions).
+When it changes, mirror it here by hand: keynote titles and the roundtable line still read "to be announced".
 
 | Item | Link |
 |---|---|
@@ -35,8 +49,8 @@ on September 21 (the form link was removed from the site; the Important Dates ro
 | Registration form (edit) | https://docs.google.com/forms/d/1tCwBB9s-FZgVO5gmnDsu2YVplRTKfytsOsl-8L7bITE/edit |
 | Registration responses | https://docs.google.com/spreadsheets/d/1trkjRsTSPzKN3KcxrSR8UfgkMnUwNYvQNYIKG20-qzI/edit |
 
-Dates shown on the site: talk submission September 11 (closed, under review), preliminary
-program September 18, final program September 23, poster submission and registration deadlines October 9,
+Dates shown on the site: talk submission September 11 (closed), preliminary program published September 22
+(links to `#program`), final program September 23, poster submission and registration deadlines October 9,
 event October 13-14.
 Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offers` node in the Event JSON-LD.
 
@@ -52,6 +66,9 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [x] Poster form: forms.gle short link live in `index.html`
 - [ ] Poster form: upload the poster banner as header image (Forms UI > Customize theme); the API cannot
 - [x] Registration responses spreadsheet linked
+- [x] Program section (`#program`, preliminary, September 22)
+- [ ] Program: keynote titles (Fawaz, Baccelli), roundtable theme and panel, session chairs if wanted
+- [ ] Program: replace the all-day `ntndays2026.ics` with per-day timed events once the program is final
 
 ## Edition numbering
 
