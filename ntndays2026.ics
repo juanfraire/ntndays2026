@@ -3,19 +3,274 @@ VERSION:2.0
 PRODID:-//NTN Days//NTN Days 2026//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
+X-WR-CALNAME:NTN Days 2026
+X-WR-TIMEZONE:Europe/Paris
+BEGIN:VTIMEZONE
+TZID:Europe/Paris
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
 BEGIN:VEVENT
 UID:ntndays2026@ntndays.space
-DTSTAMP:20260711T000000Z
-DTSTART;VALUE=DATE:20261013
-DTEND;VALUE=DATE:20261015
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T083000
+DTEND;TZID=Europe/Paris:20261014T160000
 SUMMARY:NTN Days 2026
-DESCRIPTION:NTN Days 2026 — the event dedicated to Non-Terrestrial Netwo
+DESCRIPTION:NTN Days 2026\, the event dedicated to Non-Terrestrial Netwo
  rks\, bringing together academic and industrial communities working on t
  he challenges of non-terrestrial connectivity\, from the physical layer
- to networking and standardization.\nhttps://ntndays.space/
+ to networking and standardization.\n\nTwo keynotes\, four technical sess
+ ions\, a poster session and a roundtable.\nFull program: https://ntndays
+ .space/#program
 LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
 URL:https://ntndays.space/
 STATUS:CONFIRMED
 TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-welcome@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T083000
+DTEND;TZID=Europe/Paris:20261013T090000
+SUMMARY:Welcome coffee\, registration and poster setup
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-opening@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T090000
+DTEND;TZID=Europe/Paris:20261013T091500
+SUMMARY:Opening
+DESCRIPTION:Vania Conan\, Pengwenlong Gu\, Juan A. Fraire
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-keynote1@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T091500
+DTEND;TZID=Europe/Paris:20261013T100000
+SUMMARY:Keynote: Hassan Fawaz (Univity)
+DESCRIPTION:Title to be announced.
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-break1@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T100000
+DTEND;TZID=Europe/Paris:20261013T103000
+SUMMARY:Coffee break
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-session1@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T103000
+DTEND;TZID=Europe/Paris:20261013T120000
+SUMMARY:Session 1: Programmes\, access\, interference and spectrum
+DESCRIPTION:10:30 Flavien Ronteix (EC-JRC): IRIS2\, a catalyst for 5G NT
+ N and European technological sovereignty\n10:45 Nicola Accettura (LAAS-C
+ NRS): Standalone standard satellite-aided Internet connectivity\n11:00 A
+ li Khalesi (IPSA\, LINCS): Beyond coverage\, how mega-constellations wil
+ l shape the future of non-terrestrial networks\n11:15 Jihane Lghoury (IR
+ IT\, Ericsson): Interference-aware beam hopping scheduling for LEO satel
+ lite networks using soft-conflict graph coloring\n11:30 Ashutosh Balakri
+ shnan (Telecom Paris): Doppler-Shannon association framework for non-ter
+ restrial networks\n11:45 Federico Di Vruno (SKAO): Radio astronomy prote
+ ction for direct-to-device applications
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-lunch@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T120000
+DTEND;TZID=Europe/Paris:20261013T133000
+SUMMARY:Lunch (posters on display)
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-session2@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T133000
+DTEND;TZID=Europe/Paris:20261013T144500
+SUMMARY:Session 2: Waveforms and access for satellite IoT
+DESCRIPTION:13:30 Omar El Marzougui (Toulouse INP\, IRIT): Chirp-based w
+ aveform design for next generation non-terrestrial networks\n13:45 Anton
+ y Pottier (CEA-Leti): Study of ODDM on NTN channels for LEO satellite co
+ mmunications\n14:00 Vincent Deslandes (Kineis): Kineis wide area network
+  for satellite IoT\, performance and protocol optimisation\n14:15 Antoni
+ n Le Floch (Kineis): NTN-IoT performance survey\, from simulation to in-
+ orbit testing\n14:30 Carlos Fernandez Hernandez (INSA Lyon\, Inria): Fro
+ m ground to space\, efficient downlink scheduling for direct-to-satellit
+ e LoRaWAN
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-break2@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T144500
+DTEND;TZID=Europe/Paris:20261013T151500
+SUMMARY:Coffee break
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-posters@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T151500
+DTEND;TZID=Europe/Paris:20261013T163000
+SUMMARY:Poster session (PhD students)
+DESCRIPTION:Presenters stand by their posters.
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d1-wrapup@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261013T163000
+DTEND;TZID=Europe/Paris:20261013T164500
+SUMMARY:Day 1 wrap-up
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-breakfast@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T083000
+DTEND;TZID=Europe/Paris:20261014T090000
+SUMMARY:Breakfast
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-keynote2@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T090000
+DTEND;TZID=Europe/Paris:20261014T094500
+SUMMARY:Keynote: Francois Baccelli (Inria\, Telecom Paris\, LINCS)
+DESCRIPTION:Research on Non-Terrestrial Networks\, Design Tools\, Regula
+ tion\, and Cooperation
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-break1@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T094500
+DTEND;TZID=Europe/Paris:20261014T101500
+SUMMARY:Coffee break (posters on display)
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-session3@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T101500
+DTEND;TZID=Europe/Paris:20261014T113000
+SUMMARY:Session 3: Constellation dynamics\, emulation and orbital comput
+ ing
+DESCRIPTION:10:15 Emanuele Mengoli (Telecom Paris\, Inria): Handover dyn
+ amics in LEO non-terrestrial networks\, a stochastic-geometry approach\n
+ 10:30 Sanjoy Kumar Jhawar (Telecom Paris\, Inria): Seasonal statistics o
+ f Shannon rate in a dynamical Poisson-Voronoi cellular network\n10:45 Lo
+ uis Barbier (ISAE-SUPAERO): SatComTopology and SatGoNetEm\, a flexible p
+ latform for dynamic satellite-network experimentation\n11:00 Bastien Tau
+ ran (Viveris Technologies): CERES\, a satellite constellation network em
+ ulator\n11:15 Juan A. Fraire (Inria\, INSA Lyon): Ungrounded computing i
+ n low-Earth orbit
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-lunch@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T113000
+DTEND;TZID=Europe/Paris:20261014T130000
+SUMMARY:Lunch
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-session4@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T130000
+DTEND;TZID=Europe/Paris:20261014T141500
+SUMMARY:Session 4: Small satellites\, DTN and the Solar System Internet
+DESCRIPTION:13:00 Nicolas Gresset-Bourgeois (TeSA): On the optimal numbe
+ r of relays for nanosatellite swarm downlink under ground station reconf
+ iguration overhead\n13:15 Charlelie Pignol (UGA\, CSUG\, LIG): ThingSat\
+ , an in-orbit research vehicle for experimenting with satellite IoT\n13:
+ 30 Sarah Theoulle (LIRMM): CSPCL\, a stepwise\, non-disruptive transitio
+ n to Delay-Tolerant Networking for CubeSat operators\n13:45 Alice Le Bih
+ an (INSA Lyon): A tool suite towards a Solar System Internet digital twi
+ n\n14:00 Alejandro Matias Toledo (Concordia University): Lifespan-aware
+ contact plan design for interplanetary free-space optical networks
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-break2@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T141500
+DTEND;TZID=Europe/Paris:20261014T144000
+SUMMARY:Break
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-roundtable@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T144000
+DTEND;TZID=Europe/Paris:20261014T154000
+SUMMARY:Roundtable
+DESCRIPTION:Theme and panel to be announced.
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d2-closing@ntndays.space
+DTSTAMP:20260923T000000Z
+DTSTART;TZID=Europe/Paris:20261014T154000
+DTEND;TZID=Europe/Paris:20261014T160000
+SUMMARY:Closing
+LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
+URL:https://ntndays.space/#program-day2
+TRANSP:TRANSPARENT
 END:VEVENT
 END:VCALENDAR

@@ -20,7 +20,7 @@ DNS at Namecheap needs no changes; the domain is reassigned on the GitHub side o
 
 ## Phases
 
-The site is in the **program phase** (September 22, 2026): the preliminary program is online in `#program`,
+The site is in the **program phase**: the final program is online in `#program` (published September 23, 2026),
 "Program" is the primary hero button and a nav entry, registration (free, until October 9) and poster
 submissions stay open alongside it. Talk submissions closed on September 21.
 
@@ -49,9 +49,8 @@ When it changes, mirror it here by hand: keynote titles and the roundtable line 
 | Registration form (edit) | https://docs.google.com/forms/d/1tCwBB9s-FZgVO5gmnDsu2YVplRTKfytsOsl-8L7bITE/edit |
 | Registration responses | https://docs.google.com/spreadsheets/d/1trkjRsTSPzKN3KcxrSR8UfgkMnUwNYvQNYIKG20-qzI/edit |
 
-Dates shown on the site: talk submission September 11 (closed), preliminary program published September 22
-(links to `#program`), final program September 23, poster submission and registration deadlines October 9,
-event October 13-14.
+Dates shown on the site: talk submission September 11 (closed), final program published September 23
+(links to `#program`), poster submission and registration deadlines October 9, event October 13-14.
 Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offers` node in the Event JSON-LD.
 
 ## TODOs before launch
@@ -66,9 +65,10 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [x] Poster form: forms.gle short link live in `index.html`
 - [ ] Poster form: upload the poster banner as header image (Forms UI > Customize theme); the API cannot
 - [x] Registration responses spreadsheet linked
-- [x] Program section (`#program`, preliminary, September 22)
+- [x] Program section (`#program`, final, September 23; 2 keynotes, 4 sessions, 21 talks, poster session, roundtable)
 - [ ] Program: Fawaz keynote title, Baccelli to confirm the derived title/abstract, roundtable theme and panel, session chairs if wanted
-- [ ] Program: replace the all-day `ntndays2026.ics` with per-day timed events once the program is final
+- [x] `ntndays2026.ics`: one umbrella event plus 19 timed slots (Europe/Paris VTIMEZONE, CRLF); regenerate it
+      by hand whenever `#program` changes
 
 ## Edition numbering
 
