@@ -36,7 +36,7 @@ that day's tab and adds `program-now` to the slot in progress. `#program-day2` i
 Print CSS shows both days flat.
 
 The editorial source is `../2026-paris/PROGRAM.md` (session assignments, keynote status, open decisions).
-When it changes, mirror it here by hand: keynote titles and the roundtable line still read "to be announced".
+When it changes, mirror it here by hand (and regenerate `ntndays2026.ics` too).
 
 | Item | Link |
 |---|---|
@@ -66,7 +66,10 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [ ] Poster form: upload the poster banner as header image (Forms UI > Customize theme); the API cannot
 - [x] Registration responses spreadsheet linked
 - [x] Program section (`#program`, final, September 23; 2 keynotes, 4 sessions, 21 talks, poster session, roundtable)
-- [ ] Program: Fawaz keynote title, Baccelli to confirm the derived title/abstract, roundtable theme and panel, session chairs if wanted
+- [x] Program: roundtable theme and panel live ("NTN: time to move from theory to implementation",
+      Fawaz, Baccelli, Caillouet, Bucaille; moderated by Pengwenlong Gu)
+- [ ] Program: Fawaz keynote title is the placeholder "Challenges in V-LEO systems" (Vania confirms the
+      week of Sep 28); Baccelli to confirm the title/abstract derived from his note; session chairs if wanted
 - [x] `ntndays2026.ics`: one umbrella event plus 19 timed slots (Europe/Paris VTIMEZONE, CRLF); regenerate it
       by hand whenever `#program` changes
 

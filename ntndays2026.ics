@@ -66,7 +66,7 @@ DTSTAMP:20260923T000000Z
 DTSTART;TZID=Europe/Paris:20261013T091500
 DTEND;TZID=Europe/Paris:20261013T100000
 SUMMARY:Keynote: Hassan Fawaz (Univity)
-DESCRIPTION:Title to be announced.
+DESCRIPTION:Challenges in V-LEO systems
 LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
 URL:https://ntndays.space/#program
 TRANSP:TRANSPARENT
@@ -257,8 +257,10 @@ UID:d2-roundtable@ntndays.space
 DTSTAMP:20260923T000000Z
 DTSTART;TZID=Europe/Paris:20261014T144000
 DTEND;TZID=Europe/Paris:20261014T154000
-SUMMARY:Roundtable
-DESCRIPTION:Theme and panel to be announced.
+SUMMARY:Roundtable: NTN\, time to move from theory to implementation
+DESCRIPTION:Panel: Hassan Fawaz (Univity)\, Francois Baccelli (Inria\, T
+ elecom Paris\, LINCS)\, Christelle Caillouet (Inria)\, Isabelle Bucaill
+ e (Thales). Moderated by Pengwenlong Gu (Cnam).
 LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
 URL:https://ntndays.space/#program-day2
 TRANSP:TRANSPARENT
