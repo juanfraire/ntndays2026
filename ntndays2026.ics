@@ -65,8 +65,14 @@ UID:d1-keynote1@ntndays.space
 DTSTAMP:20260923T000000Z
 DTSTART;TZID=Europe/Paris:20261013T091500
 DTEND;TZID=Europe/Paris:20261013T100000
-SUMMARY:Keynote: Hassan Fawaz (Univity)
-DESCRIPTION:Challenges in V-LEO systems
+SUMMARY:Keynote: Hassan Fawaz (Univity) - From Vision to Validation
+DESCRIPTION:From Vision to Validation\, Univity's 5G NTN Journey.\n\nThis
+  keynote will introduce Univity's vision for 5G Non-Terrestrial Networks
+  and present some of the key building blocks developed to turn that visi
+ on into a validated system. Through uniSpark\, uniShape and the company'
+ s digital-twin environment\, the presentation will highlight how archite
+ cture\, emulation and end-to-end testing are used to progressively desig
+ n\, integrate and de-risk satellite-based 5G connectivity.
 LOCATION:Cnam\, 292 Rue Saint-Martin\, 75003 Paris\, France
 URL:https://ntndays.space/#program
 TRANSP:TRANSPARENT

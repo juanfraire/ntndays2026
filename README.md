@@ -68,8 +68,8 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [x] Program section (`#program`, final, September 23; 2 keynotes, 4 sessions, 21 talks, poster session, roundtable)
 - [x] Program: roundtable theme and panel live ("NTN: time to move from theory to implementation",
       Fawaz, Baccelli, Caillouet, Bucaille; moderated by Pengwenlong Gu)
-- [ ] Program: Fawaz keynote title is the placeholder "Challenges in V-LEO systems" (Vania confirms the
-      week of Sep 28); Baccelli to confirm the title/abstract derived from his note; session chairs if wanted
+- [x] Program: Fawaz keynote title, abstract and bio live (October 6)
+- [ ] Program: Baccelli to confirm the title/abstract derived from his note; session chairs if wanted
 - [x] `ntndays2026.ics`: one umbrella event plus 19 timed slots (Europe/Paris VTIMEZONE, CRLF); regenerate it
       by hand whenever `#program` changes
 
