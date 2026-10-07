@@ -57,6 +57,10 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 
 - [x] Organizing committee list (`#committee`: Vania Conan and Pengwenlong Gu of Cnam, Juan A. Fraire of Inria,
       listed alphabetically; add members here as they join)
+- [x] Venue practical info (`#venue`: amphitheatre Jean-Baptiste Say, access Y, lower level; transport;
+      `cnam-campus-map.jpg`, the Cnam campus map provided by Peng on October 6, annotated with a red circle
+      and arrow on the JBS amphitheatre; the unannotated original is `../2026-paris/WhatsApp Image 2026-10-06
+      at 18.14.20.jpeg`)
 - [ ] Sponsor list confirmation (`#sponsors` section; Cnam, GDR RSD, GDR IASIS, Inria already in)
 - [x] Talk submission form link (was live in hero and `#submit`; removed September 21 when talk review started)
 - [x] Registration form link (live in hero and `#submit`)
