@@ -76,8 +76,9 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [x] Program: Baccelli approved the bio and sent a revised abstract on October 9; the site and the
       `.ics` now carry his wording, and no text on the site is unapproved by its subject
 - [ ] Program: session chairs not assigned
-- [x] Program: poster session lists the two posters and Stefano Taborelli's demo (October 8); update it
-      if more arrive before the form closes on October 9
+- [x] Program: poster session lists four posters (Filipe, Rolland, Srour, Maatouk) and Stefano
+      Taborelli's demo, complete after the form closed on October 9; the heading says "Student posters
+      and demos" because Maatouk is an M2 student
 - [x] `ntndays2026.ics`: one umbrella event plus 19 timed slots (Europe/Paris VTIMEZONE, CRLF); regenerate it
       by hand whenever `#program` changes
 

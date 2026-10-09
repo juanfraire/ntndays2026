@@ -160,11 +160,14 @@ UID:d1-posters@ntndays.space
 DTSTAMP:20260923T000000Z
 DTSTART;TZID=Europe/Paris:20261013T151500
 DTEND;TZID=Europe/Paris:20261013T163000
-SUMMARY:Poster session and demos (PhD students)
-DESCRIPTION:Posters and live demos by PhD students.\n\nMiguel Filipe (LAA
- S-CNRS): Breaking the GNSS dependency in direct-to-satellite cellular ne
- tworks\nFlorian Rolland (LAAS-CNRS): Time division multiple access for G
- NSS-free direct-to-satellite long range wide area networks\nStefano Tabo
+SUMMARY:Poster session and demos (students)
+DESCRIPTION:Four posters and one live demo by students.\n\nMiguel Filipe 
+ (LAAS-CNRS): Breaking the GNSS dependency in direct-to-satellite cellula
+ r networks\nFlorian Rolland (LAAS-CNRS): Time division multiple access f
+ or GNSS-free direct-to-satellite long range wide area networks\nAli Srou
+ r (Cnam): Energy-aware adaptive processing management for Open RAN UxNBs
+ \nYanis Maatouk (Sorbonne Universite): Towards geolocating Starlink user
+ s from RTT timing\, starting with recognition behind a VPN\nStefano Tabo
  relli (Cnam\, demo): OCUDU-SkyLink\, extending OCUDU for multi-connectiv
  ity in space-terrestrial 6G networks
 LOCATION:Amphitheatre Jean-Baptiste Say (access Y\, lower level)\, Cnam\,
