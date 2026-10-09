@@ -67,13 +67,17 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [x] Poster submission form link (live in hero and `#submit`)
 - [x] Poster form: responses spreadsheet linked
 - [x] Poster form: forms.gle short link live in `index.html`
-- [ ] Poster form: upload the poster banner as header image (Forms UI > Customize theme); the API cannot
+- [ ] Poster form: banner still shows the talk header image (cosmetic; the form closes October 9)
 - [x] Registration responses spreadsheet linked
 - [x] Program section (`#program`, final, September 23; 2 keynotes, 4 sessions, 21 talks, poster session, roundtable)
 - [x] Program: roundtable theme and panel live ("NTN: time to move from theory to implementation",
       Fawaz, Baccelli, Caillouet, Bucaille; moderated by Pengwenlong Gu)
 - [x] Program: Fawaz keynote title, abstract and bio live (October 6)
-- [ ] Program: Baccelli to confirm the title/abstract derived from his note; session chairs if wanted
+- [x] Program: Baccelli approved the bio and sent a revised abstract on October 9; the site and the
+      `.ics` now carry his wording, and no text on the site is unapproved by its subject
+- [ ] Program: session chairs not assigned
+- [x] Program: poster session lists the two posters and Stefano Taborelli's demo (October 8); update it
+      if more arrive before the form closes on October 9
 - [x] `ntndays2026.ics`: one umbrella event plus 19 timed slots (Europe/Paris VTIMEZONE, CRLF); regenerate it
       by hand whenever `#program` changes
 

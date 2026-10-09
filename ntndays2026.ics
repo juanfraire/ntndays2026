@@ -200,8 +200,25 @@ DTSTAMP:20260923T000000Z
 DTSTART;TZID=Europe/Paris:20261014T090000
 DTEND;TZID=Europe/Paris:20261014T094500
 SUMMARY:Keynote: Francois Baccelli (Inria\, Telecom Paris\, LINCS)
-DESCRIPTION:Research on Non-Terrestrial Networks\, Design Tools\, Regulat
- ion\, and Cooperation
+DESCRIPTION:Research on Non-Terrestrial Networks: Design Tools\, Regulati
+ on\, and Cooperation.\n\nThis talk presents a research and innovation pr
+ ogramme on non-terrestrial networks (NTN) built on three complementary c
+ omponents. The first is a set of advanced analytical tools for the desig
+ n of efficient\, high-performance NTN: recent theoretical results that c
+ haracterize and predict the statistics of spectral efficiency in large-s
+ cale deployments\, and that support the design of constellation architec
+ tures\, routing strategies and critical performance metrics such as late
+ ncy as a function of the constellation parameters and architecture. Ongo
+ ing work extends these methods to terrestrial/non-terrestrial integratio
+ n\, to sensing capabilities\, to reconfigurable intelligent surfaces. Th
+ e second component is interdisciplinary and regulatory: following the 20
+ 24 report of the Academie des sciences on large satellite constellations
+ \, NTN were selected as one of the three scientific priorities of the S7
+  process for the 2026 G7 summit\, and the resulting joint statement of t
+ he G7 academies calls for an international\, science-based regulatory fr
+ amework ensuring the sustainable use of low Earth orbit. The third compo
+ nent is industrial and international cooperation\, with partners such as
+  Univity\, Greenerwave and ONERA\, and with universities in South Korea.
 LOCATION:Amphitheatre Jean-Baptiste Say (access Y\, lower level)\, Cnam\,
   292 Rue Saint-Martin\, 75003 Paris\, France
 URL:https://ntndays.space/#program-day2
