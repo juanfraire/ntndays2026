@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTN Days 2026 | Welcome</title>
+    <meta name="description" content="Opening slides of NTN Days 2026, Cnam Paris, October 13-14, 2026.">
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --orbit-300: #fdba74;
+            --orbit-400: #fb923c;
+            --orbit-500: #f97316;
+            --orbit-600: #ea580c;
+            --nebula-300: #c4b5fd;
+            --nebula-400: #a78bfa;
+            --nebula-500: #8b5cf6;
+            --ink: #030712;
+            --panel: rgba(17, 24, 39, 0.72);
+            --line: rgba(55, 65, 81, 0.8);
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+        }
+
+        html,
+        body {
+            background: var(--ink);
+        }
+
+        /* Starfield behind every slide */
+        .sky {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(900px 500px at 15% -10%, rgba(249, 115, 22, 0.16), transparent 70%),
+                radial-gradient(800px 500px at 90% 110%, rgba(139, 92, 246, 0.16), transparent 70%),
+                var(--ink);
+        }
+
+        .sky i {
+            position: absolute;
+            inset: -50%;
+            background-repeat: repeat;
+            opacity: 0.55;
+            animation: drift 220s linear infinite;
+        }
+
+        .sky i:nth-child(1) {
+            background-image:
+                radial-gradient(1.6px 1.6px at 20px 30px, #fff, transparent),
+                radial-gradient(1.4px 1.4px at 140px 90px, #e2e8f0, transparent),
+                radial-gradient(1.2px 1.2px at 260px 40px, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 330px 200px, #dbeafe, transparent);
+            background-size: 420px 320px;
+        }
+
+        .sky i:nth-child(2) {
+            background-image:
+                radial-gradient(1.1px 1.1px at 60px 160px, #fdba74, transparent),
+                radial-gradient(1px 1px at 200px 220px, #fff, transparent),
+                radial-gradient(1.2px 1.2px at 380px 120px, #c4b5fd, transparent);
+            background-size: 560px 460px;
+            opacity: 0.4;
+            animation-duration: 340s;
+            animation-direction: reverse;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+
+            to {
+                transform: translate3d(-420px, -320px, 0);
+            }
+        }
+
+        .reveal {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            color: var(--text);
+            font-size: 30px;
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            text-transform: none;
+            letter-spacing: -0.01em;
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.1;
+            text-shadow: none;
+            margin: 0 0 0.4em 0;
+        }
+
+        .reveal h1 {
+            font-size: 2.6em;
+        }
+
+        .reveal h2 {
+            font-size: 1.7em;
+        }
+
+        .reveal h3 {
+            font-size: 1.15em;
+        }
+
+        .reveal p,
+        .reveal li {
+            line-height: 1.45;
+        }
+
+        .reveal a {
+            color: var(--orbit-400);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(251, 146, 60, 0.4);
+        }
+
+        .reveal section>.kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+            font-size: 0.5em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--orbit-300);
+            margin-bottom: 0.9em;
+        }
+
+        .kicker.violet {
+            color: var(--nebula-300);
+        }
+
+        .grad {
+            background: linear-gradient(90deg, var(--orbit-400), var(--nebula-400));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .rule {
+            width: 120px;
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--orbit-500), var(--nebula-500));
+            margin: 0 0 1em 0;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .small {
+            font-size: 0.62em;
+        }
+
+        .lead {
+            font-size: 0.78em;
+            color: #d1d5db;
+            max-width: 22em;
+        }
+
+        /* Cards and grids */
+        .cards {
+            display: grid;
+            gap: 0.7em;
+        }
+
+        .cards.c2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .cards.c3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 0.8em 0.9em;
+            font-size: 0.66em;
+        }
+
+        .card.orbit {
+            border-color: rgba(194, 65, 12, 0.6);
+        }
+
+        .card.violet {
+            border-color: rgba(124, 58, 237, 0.55);
+        }
+
+        .card h3 {
+            font-size: 1.05em;
+            margin-bottom: 0.25em;
+        }
+
+        .card .who {
+            color: var(--muted);
+            font-size: 0.9em;
+        }
+
+        .card i.badge {
+            color: var(--orbit-400);
+            margin-right: 0.4em;
+        }
+
+        .card.violet i.badge {
+            color: var(--nebula-400);
+        }
+
+        /* Numbers */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6em;
+        }
+
+        .stat {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 0.7em 0.5em;
+            text-align: center;
+        }
+
+        .stat b {
+            display: block;
+            font-size: 1.5em;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--orbit-400), var(--nebula-400));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat span {
+            display: block;
+            font-size: 0.5em;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.3em;
+        }
+
+        /* Agenda rows */
+        .agenda {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 0.66em;
+        }
+
+        .agenda li {
+            display: grid;
+            grid-template-columns: 7.2em 1fr;
+            gap: 0.8em;
+            align-items: baseline;
+            padding: 0.42em 0.6em;
+            border-radius: 10px;
+        }
+
+        .agenda li+li {
+            margin-top: 0.12em;
+        }
+
+        .agenda .t {
+            color: var(--orbit-300);
+            font-variant-numeric: tabular-nums;
+            font-weight: 600;
+        }
+
+        .agenda li.hi {
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(194, 65, 12, 0.45);
+        }
+
+        .agenda li.hv {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.45);
+        }
+
+        .agenda li.hv .t {
+            color: var(--nebula-300);
+        }
+
+        .agenda em {
+            color: var(--muted);
+            font-style: normal;
+            font-size: 0.88em;
+        }
+
+        /* Rules list with icons */
+        .rules {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 0.68em;
+        }
+
+        .rules li {
+            display: grid;
+            grid-template-columns: 1.8em 1fr;
+            gap: 0.6em;
+            align-items: start;
+            margin-bottom: 0.65em;
+        }
+
+        .rules i {
+            color: var(--orbit-400);
+            margin-top: 0.2em;
+        }
+
+        .rules b {
+            color: #fff;
+        }
+
+        /* Timeline of editions */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6em;
+            margin-top: 0.4em;
+        }
+
+        .step {
+            position: relative;
+            padding-top: 1.6em;
+            font-size: 0.62em;
+        }
+
+        .step::before {
+            content: "";
+            position: absolute;
+            top: 0.45em;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(75, 85, 99, 0.7);
+        }
+
+        .step::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0.9em;
+            height: 0.9em;
+            border-radius: 50%;
+            background: var(--orbit-500);
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
+        }
+
+        .step.now::after {
+            background: var(--nebula-400);
+            box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.25);
+        }
+
+        .step b {
+            display: block;
+            color: #fff;
+            font-size: 1.25em;
+        }
+
+        .step span {
+            color: var(--muted);
+        }
+
+        /* Cover */
+        .cover {
+            text-align: center !important;
+        }
+
+        .cover .orbitwrap {
+            position: relative;
+            width: 7.4em;
+            height: 7.4em;
+            margin: 0 auto 0.4em auto;
+        }
+
+        .cover .ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px dashed rgba(253, 186, 116, 0.42);
+            animation: spin 26s linear infinite;
+        }
+
+        .cover .ring.two {
+            inset: 1.1em;
+            border-color: rgba(196, 181, 253, 0.38);
+            animation-duration: 17s;
+            animation-direction: reverse;
+        }
+
+        .cover .ring .sat {
+            position: absolute;
+            top: -0.42em;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.36em;
+            color: var(--orbit-300);
+        }
+
+        .cover .ring.two .sat {
+            color: var(--nebula-300);
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cover img.logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4.6em;
+            transform: translate(-50%, -50%);
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 28px rgba(249, 115, 22, 0.3));
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) translateY(-0.12em);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(0.12em);
+            }
+        }
+
+        .cover h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.15em;
+        }
+
+        .cover .sub {
+            font-size: 0.8em;
+            color: #e5e7eb;
+            margin: 0 0 0.9em 0;
+        }
+
+        .cover .meta {
+            display: flex;
+            justify-content: center;
+            gap: 1.6em;
+            font-size: 0.56em;
+            color: var(--muted);
+            margin-bottom: 1em;
+        }
+
+        .cover .hosts {
+            font-size: 0.56em;
+            color: #d1d5db;
+        }
+
+        .cover .hosts b {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Logos */
+        .logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+            margin-top: 0.6em;
+        }
+
+        .logos span {
+            background: #fff;
+            border-radius: 14px;
+            padding: 0.5em 0.7em;
+            display: inline-flex;
+        }
+
+        .logos img {
+            height: 1.5em;
+            display: block;
+        }
+
+        /* Reveal chrome */
+        .reveal .progress {
+            color: var(--orbit-500);
+            height: 4px;
+        }
+
+        .reveal .slide-number {
+            background: transparent;
+            color: #4b5563;
+            font-size: 0.42em;
+        }
+
+        .reveal .controls {
+            color: var(--orbit-500);
+        }
+
+        .reveal section>.foot {
+            position: absolute;
+            bottom: -1.1em;
+            left: 0;
+            font-size: 0.42em;
+            color: #4b5563;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .sky i,
+            .cover .ring,
+            .cover img.logo {
+                animation: none !important;
+            }
+        }
+
+        /* PDF export (welcome.html?print-pdf, then print to PDF): keep the dark deck,
+           drop the animated starfield and paint the glow on each page instead. */
+        html.print-pdf .sky {
+            display: none;
+        }
+
+        html.print-pdf,
+        html.print-pdf body,
+        html.print-pdf .reveal,
+        html.print-pdf .reveal .slides,
+        html.print-pdf .pdf-page {
+            background-color: var(--ink) !important;
+            color: var(--text) !important;
+        }
+
+        html.print-pdf .reveal .slides section {
+            background-color: transparent !important;
+            color: var(--text) !important;
+        }
+
+        html.print-pdf .pdf-page {
+            background-image:
+                radial-gradient(900px 500px at 15% -10%, rgba(249, 115, 22, 0.16), transparent 70%),
+                radial-gradient(800px 500px at 90% 110%, rgba(139, 92, 246, 0.16), transparent 70%) !important;
+        }
+
+        html.print-pdf * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @media print {
+
+            .sky {
+                display: none;
+            }
+
+            html,
+            body,
+            .reveal,
+            .reveal .slides,
+            .reveal .slides section,
+            .pdf-page {
+                background-color: var(--ink) !important;
+                color: var(--text) !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sky" aria-hidden="true"><i></i><i></i></div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 1. Cover -->
+            <section class="cover" data-background-gradient="radial-gradient(1200px 700px at 50% 0%, rgba(249,115,22,0.18), transparent 70%)">
+                <div class="orbitwrap">
+                    <div class="ring"><i class="fas fa-satellite sat"></i></div>
+                    <div class="ring two"><i class="fas fa-satellite-dish sat"></i></div>
+                    <img class="logo" src="ntn-days-logo-800.png" alt="NTN Days logo">
+                </div>
+                <h1><span class="grad">NTN Days 2026</span></h1>
+                <p class="sub">Non-Terrestrial Networks<br>Bridging Space, Air, and Ground</p>
+                <div class="meta">
+                    <span><i class="fas fa-map-marker-alt" style="color:var(--orbit-400)"></i> Cnam, Paris</span>
+                    <span><i class="far fa-calendar-alt" style="color:var(--orbit-400)"></i> 13&ndash;14 October 2026</span>
+                    <span><i class="fas fa-award" style="color:var(--orbit-400)"></i> 4th edition</span>
+                </div>
+                <p class="hosts"><b>Vania Conan</b> &middot; <b>Pengwenlong Gu</b> (Cnam) &middot;
+                    <b>Juan A. Fraire</b> (Inria)</p>
+                <aside class="notes">
+                    Vania opens. Good morning, welcome to the Cnam, welcome to the fourth NTN Days.
+                    Hit space to advance. Press S for these notes, O for the slide overview, F for fullscreen.
+                </aside>
+            </section>
+
+            <!-- 2. Welcome -->
+            <section>
+                <span class="kicker"><i class="fas fa-hand-sparkles"></i> Welcome</span>
+                <h2>Two days, one community</h2>
+                <div class="rule"></div>
+                <div class="cards c3">
+                    <div class="card orbit">
+                        <h3>Vania Conan</h3>
+                        <p class="who">Cnam, CEDRIC</p>
+                    </div>
+                    <div class="card violet">
+                        <h3>Pengwenlong Gu</h3>
+                        <p class="who">Cnam, CEDRIC</p>
+                    </div>
+                    <div class="card orbit">
+                        <h3>Juan A. Fraire</h3>
+                        <p class="who">Inria, INSA Lyon</p>
+                    </div>
+                </div>
+                <p class="lead" style="margin-top:0.8em">
+                    Hosted by the Cnam, with the support of GDR RSD and GDR IASIS.
+                    Attendance is free, and it stays that way because our hosts and the GDRs carry the cost.
+                </p>
+                <aside class="notes">
+                    Vania: thanks to the Cnam and CEDRIC for the amphitheatre and the catering, to the two GDRs
+                    for the support, and to everyone who travelled. Hand over to Juan for the program.
+                </aside>
+            </section>
+
+            <!-- 3. Editions -->
+            <section>
+                <span class="kicker"><i class="fas fa-timeline"></i> Since 2023</span>
+                <h2>Fourth edition</h2>
+                <div class="rule"></div>
+                <div class="timeline">
+                    <div class="step">
+                        <b>2023</b><span>Toulouse<br>IRIT, ENSEEIHT</span>
+                    </div>
+                    <div class="step">
+                        <b>2024</b><span>Grenoble</span>
+                    </div>
+                    <div class="step">
+                        <b>2025</b><span>Toulouse<br>LAAS-CNRS</span>
+                    </div>
+                    <div class="step now">
+                        <b>2026</b><span>Paris<br>Cnam</span>
+                    </div>
+                </div>
+                <p class="lead" style="margin-top:1em">
+                    The meeting point of the French NTN community, academic and industrial,
+                    from the physical layer to networking, standardization and regulation.
+                </p>
+                <aside class="notes">
+                    Juan: the event grew out of the GDR RSD and GDR IASIS journees. Toulouse twice, Grenoble,
+                    now Paris. Past editions are linked at the bottom of ntndays.space.
+                </aside>
+            </section>
+
+            <!-- 4. Numbers -->
+            <section>
+                <span class="kicker"><i class="fas fa-chart-simple"></i> This edition</span>
+                <h2>In numbers</h2>
+                <div class="rule"></div>
+                <div class="stats">
+                    <div class="stat"><b>100</b><span>registered</span></div>
+                    <div class="stat"><b>2</b><span>keynotes</span></div>
+                    <div class="stat"><b>21</b><span>talks</span></div>
+                    <div class="stat"><b>4</b><span>sessions</span></div>
+                </div>
+                <div class="stats" style="margin-top:0.6em">
+                    <div class="stat"><b>4</b><span>posters</span></div>
+                    <div class="stat"><b>1</b><span>live demo</span></div>
+                    <div class="stat"><b>1</b><span>roundtable</span></div>
+                    <div class="stat"><b>0 &euro;</b><span>registration</span></div>
+                </div>
+                <p class="small muted" style="margin-top:0.9em">
+                    Registrations closed on October 9. Labs, operators, manufacturers, agencies and the
+                    European Commission are all in the room.
+                </p>
+                <aside class="notes">
+                    Juan: a hundred registrations, our largest edition so far. Twenty-one talks selected from
+                    the open call, two invited keynotes, a student poster session with a live demo, and a
+                    roundtable to close.
+                </aside>
+            </section>
+
+            <!-- 5. Day 1 -->
+            <section>
+                <span class="kicker"><i class="far fa-calendar-check"></i> Tuesday 13 October</span>
+                <h2>Today</h2>
+                <div class="rule"></div>
+                <ul class="agenda">
+                    <li><span class="t">09:00</span><span>Opening <em>&middot; you are here</em></span></li>
+                    <li class="hi"><span class="t">09:15</span><span><b>Keynote 1</b> &middot; Hassan Fawaz
+                            <em>&middot; Univity</em></span></li>
+                    <li><span class="t">10:00</span><span>Coffee break</span></li>
+                    <li><span class="t">10:30</span><span><b>Session 1</b> &middot; Programmes, access, interference and
+                            spectrum <em>&middot; 6 talks</em></span></li>
+                    <li><span class="t">12:00</span><span>Lunch <em>&middot; posters on display</em></span></li>
+                    <li><span class="t">13:30</span><span><b>Session 2</b> &middot; Waveforms and access for satellite
+                            IoT <em>&middot; 5 talks</em></span></li>
+                    <li><span class="t">14:45</span><span>Coffee break</span></li>
+                    <li class="hv"><span class="t">15:15</span><span><b>Poster session and demos</b></span></li>
+                    <li><span class="t">16:30</span><span>Day 1 wrap-up</span></li>
+                </ul>
+                <aside class="notes">
+                    Juan: today is keynote, two sessions, posters. We finish at 16:45.
+                </aside>
+            </section>
+
+            <!-- 6. Day 2 -->
+            <section>
+                <span class="kicker"><i class="far fa-calendar-check"></i> Wednesday 14 October</span>
+                <h2>Tomorrow</h2>
+                <div class="rule"></div>
+                <ul class="agenda">
+                    <li><span class="t">08:30</span><span>Breakfast</span></li>
+                    <li class="hi"><span class="t">09:00</span><span><b>Keynote 2</b> &middot; Fran&ccedil;ois Baccelli
+                            <em>&middot; Inria, T&eacute;l&eacute;com Paris, LINCS</em></span></li>
+                    <li><span class="t">09:45</span><span>Coffee break</span></li>
+                    <li><span class="t">10:15</span><span><b>Session 3</b> &middot; Constellation dynamics, emulation and
+                            orbital computing <em>&middot; 5 talks</em></span></li>
+                    <li><span class="t">11:30</span><span>Lunch</span></li>
+                    <li><span class="t">13:00</span><span><b>Session 4</b> &middot; Small satellites, DTN and the Solar
+                            System Internet <em>&middot; 5 talks</em></span></li>
+                    <li><span class="t">14:15</span><span>Break</span></li>
+                    <li class="hv"><span class="t">14:40</span><span><b>Roundtable</b></span></li>
+                    <li><span class="t">15:40</span><span>Closing <em>&middot; room free at 16:00</em></span></li>
+                </ul>
+                <aside class="notes">
+                    Juan: tomorrow is the symmetric day, and it ends at 16:00 sharp because the amphitheatre
+                    has another event at 17:00.
+                </aside>
+            </section>
+
+            <!-- 7. Keynotes -->
+            <section>
+                <span class="kicker"><i class="fas fa-microphone-lines"></i> Invited keynotes</span>
+                <h2>Two views of the field</h2>
+                <div class="rule"></div>
+                <div class="cards c2">
+                    <div class="card orbit">
+                        <p class="who"><i class="badge fas fa-clock"></i>Today 09:15</p>
+                        <h3>Hassan Fawaz</h3>
+                        <p class="who">Univity</p>
+                        <p style="margin-top:0.5em">From Vision to Validation: Univity's 5G NTN Journey</p>
+                    </div>
+                    <div class="card violet">
+                        <p class="who"><i class="badge fas fa-clock"></i>Tomorrow 09:00</p>
+                        <h3>Fran&ccedil;ois Baccelli</h3>
+                        <p class="who">Inria, T&eacute;l&eacute;com Paris, LINCS</p>
+                        <p style="margin-top:0.5em">Research on Non-Terrestrial Networks: Design Tools, Regulation,
+                            and Cooperation</p>
+                    </div>
+                </div>
+                <p class="lead" style="margin-top:0.9em">
+                    An operator building a constellation, and the mathematics and regulation behind the
+                    constellations we all study.
+                </p>
+                <aside class="notes">
+                    Juan: both keynotes are Cnam invitations. Abstracts and bios are on the website.
+                </aside>
+            </section>
+
+            <!-- 8. Posters -->
+            <section>
+                <span class="kicker violet"><i class="fas fa-image"></i> Today 15:15 to 16:30</span>
+                <h2>Student posters and demos</h2>
+                <div class="rule"></div>
+                <ul class="agenda" style="font-size:0.6em">
+                    <li><span class="t">Poster</span><span>Miguel Filipe
+                            <em>&middot; LAAS-CNRS</em><br>Breaking the GNSS dependency in direct-to-satellite cellular
+                            networks</span></li>
+                    <li><span class="t">Poster</span><span>Florian Rolland
+                            <em>&middot; LAAS-CNRS</em><br>TDMA for GNSS-free direct-to-satellite LPWAN</span></li>
+                    <li><span class="t">Poster</span><span>Ali Srour
+                            <em>&middot; Cnam</em><br>Energy-aware adaptive processing management for Open RAN
+                            UxNBs</span></li>
+                    <li><span class="t">Poster</span><span>Yanis Maatouk
+                            <em>&middot; Sorbonne Universit&eacute;</em><br>Geolocating Starlink users from RTT timing,
+                            behind a VPN</span></li>
+                    <li class="hv"><span class="t">Demo</span><span>Stefano Taborelli
+                            <em>&middot; Cnam</em><br>OCUDU-SkyLink: multi-connectivity in space-terrestrial 6G
+                            networks</span></li>
+                </ul>
+                <p class="small muted" style="margin-top:0.7em">
+                    Boards are up in the coffee area for the whole of today. The presenters are PhD and master
+                    students, so give them your hardest questions.
+                </p>
+                <aside class="notes">
+                    Juan or Peng: four posters and one live demo. Presenters stand by their boards during the
+                    session and the breaks.
+                </aside>
+            </section>
+
+            <!-- 9. Roundtable -->
+            <section>
+                <span class="kicker violet"><i class="fas fa-comments"></i> Roundtable &middot; tomorrow 14:40</span>
+                <h2>NTN: time to move from theory to implementation</h2>
+                <div class="rule"></div>
+                <div class="cards c2">
+                    <div class="card violet">
+                        <h3>Hassan Fawaz</h3>
+                        <p class="who">Univity</p>
+                    </div>
+                    <div class="card violet">
+                        <h3>Fran&ccedil;ois Baccelli</h3>
+                        <p class="who">Inria, T&eacute;l&eacute;com Paris, LINCS</p>
+                    </div>
+                    <div class="card violet">
+                        <h3>Christelle Caillouet</h3>
+                        <p class="who">Universit&eacute; C&ocirc;te d'Azur, I3S, Inria</p>
+                    </div>
+                    <div class="card violet">
+                        <h3>Isabelle Bucaille</h3>
+                        <p class="who">Thales</p>
+                    </div>
+                </div>
+                <p class="small muted" style="margin-top:0.8em">
+                    One hour of discussion with four panellists, moderated by Pengwenlong Gu. Bring your questions
+                    during the two days, we will feed them to the panel.
+                </p>
+                <aside class="notes">
+                    Peng: the roundtable closes the event. Collect questions from the floor over the two days.
+                </aside>
+            </section>
+
+            <!-- 10. Housekeeping -->
+            <section>
+                <span class="kicker"><i class="fas fa-circle-info"></i> Practical</span>
+                <h2>How we run the two days</h2>
+                <div class="rule"></div>
+                <ul class="rules">
+                    <li><i class="fas fa-stopwatch"></i>
+                        <span><b>15 minutes per talk</b>, 12 of presentation and 3 of questions. The chairs keep
+                            time, and they will be strict: 21 talks leave no slack.</span>
+                    </li>
+                    <li><i class="fas fa-laptop"></i>
+                        <span><b>One laptop for all talks.</b> If we do not have your slides yet, find us during
+                            the next break, PDF preferred.</span>
+                    </li>
+                    <li><i class="fas fa-mug-hot"></i>
+                        <span><b>Coffee and lunch</b> are served just outside the amphitheatre, where the posters
+                            are. Use the breaks, they are part of the program.</span>
+                    </li>
+                    <li><i class="fas fa-door-open"></i>
+                        <span><b>Amphith&eacute;&acirc;tre Jean-Baptiste Say</b>, access Y, lower level. The
+                            registration desk is at the door.</span>
+                    </li>
+                    <li><i class="far fa-calendar-plus"></i>
+                        <span><b>ntndays.space</b> carries the full program, the abstracts and a calendar file for
+                            your phone.</span>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    Peng: practical points. Add the wifi credentials here if the Cnam provides guest access.
+                    Mention the toilets and the emergency exit.
+                </aside>
+            </section>
+
+            <!-- 11. GT NTN. Remove this slide if the GT is not ready to be announced. -->
+            <section>
+                <span class="kicker"><i class="fas fa-seedling"></i> News from the GDR RSD</span>
+                <h2>A working group for NTN</h2>
+                <div class="rule"></div>
+                <ul class="rules">
+                    <li><i class="fas fa-users"></i>
+                        <span>The GDR RSD is creating a <b>GT NTN</b>, and these journ&eacute;es become its annual
+                            event.</span>
+                    </li>
+                    <li><i class="fas fa-handshake"></i>
+                        <span>The group will be led <b>collectively, across sites</b>. If you want to take part in
+                            the coordination, talk to us during the two days.</span>
+                    </li>
+                    <li><i class="fas fa-location-dot"></i>
+                        <span><b>NTN Days 2027 goes to Rennes</b>, carried by Georgios Z. Papadopoulos
+                            (IMT Atlantique).</span>
+                    </li>
+                </ul>
+                <p class="small muted" style="margin-top:0.8em">
+                    gdr-rsd.cnrs.fr
+                </p>
+                <aside class="notes">
+                    Juan, two minutes: Fabrice Valois and Yann Busnel announced the GT on October 9. Say only what
+                    is settled. If the coordination team is not agreed by Tuesday morning, keep the Rennes 2027
+                    news and drop the rest, or move the whole slide to the roundtable on Wednesday.
+                </aside>
+            </section>
+
+            <!-- 12. Thanks -->
+            <section>
+                <span class="kicker"><i class="fas fa-heart"></i> Thank you</span>
+                <h2>Who makes this possible</h2>
+                <div class="rule"></div>
+                <div class="logos">
+                    <span><img src="logo-cnam.svg" alt="Cnam"></span>
+                    <span><img src="logo-gdr-rsd.png" alt="GDR RSD"></span>
+                    <span><img src="logo-gdr-iasis.png" alt="GDR IASIS"></span>
+                    <span><img src="logo-inria.svg" alt="Inria"></span>
+                </div>
+                <p class="lead" style="margin-top:1.1em">
+                    And the Cnam staff who opened the building, set up the room and fed a hundred people
+                    for two days.
+                </p>
+                <aside class="notes">
+                    Vania: thank the Cnam logistics team by name if possible, and the two GDRs.
+                </aside>
+            </section>
+
+            <!-- 13. Closing -->
+            <section class="cover">
+                <div class="orbitwrap" style="width:5.6em;height:5.6em">
+                    <div class="ring"><i class="fas fa-satellite sat"></i></div>
+                    <div class="ring two"><i class="fas fa-satellite-dish sat"></i></div>
+                    <img class="logo" src="ntn-days-logo-800.png" alt="NTN Days logo" style="width:3.4em">
+                </div>
+                <h2 style="font-size:2.1em"><span class="grad">Enjoy the two days</span></h2>
+                <p class="sub" style="font-size:0.7em">Program, abstracts and calendar file<br>
+                    <a href="https://ntndays.space/">ntndays.space</a>
+                </p>
+                <p class="hosts">Questions, problems, ideas: find Vania, Peng or Juan at the desk.</p>
+                <aside class="notes">
+                    Hand over to the first keynote. Hassan Fawaz, from Vision to Validation.
+                </aside>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            progress: true,
+            controls: true,
+            controlsTutorial: false,
+            center: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            width: 1280,
+            height: 720,
+            margin: 0.07,
+            pdfSeparateFragments: false,
+            plugins: [RevealNotes]
+        });
+    </script>
+</body>
+
+</html>
