@@ -34,6 +34,26 @@
             background: var(--ink);
         }
 
+        /* Reveal paints its viewport white, which only shows through on narrow screens,
+           where it switches by itself to the scroll view (phones). Keep the deck dark there. */
+        .reveal-viewport {
+            background-color: var(--ink);
+            color: var(--text);
+        }
+
+        .reveal-viewport.reveal-scroll .scroll-page,
+        .reveal-viewport.reveal-scroll .scroll-page-content,
+        .reveal-viewport.reveal-scroll .scroll-page-sticky {
+            background-color: transparent;
+        }
+
+        /* In the scroll view the whole deck scrolls, so pin the starfield to the pages instead */
+        .reveal-viewport.reveal-scroll .sky {
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 100%;
+        }
+
         /* Starfield behind every slide */
         .sky {
             position: fixed;

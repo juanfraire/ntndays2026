@@ -47,6 +47,9 @@ between Vania, Juan and Peng there), `O` for the overview, `F` for fullscreen.
 
 - `welcome.html?print-pdf` then print to PDF gives a shareable deck and an offline backup. Make one
   before the event: the deck pulls Reveal, Font Awesome and Google Fonts from CDNs and needs the network.
+- Below 435 px wide (phones) Reveal switches by itself to its scroll view, where its own stylesheet
+  paints `body.reveal-viewport` and each `.scroll-page` white. The `<style>` block overrides both, so
+  the deck stays dark there; check `?view=scroll` after any Reveal upgrade.
 - Slide 7 announces the GDR RSD working group. It carries a comment saying it can be dropped, since
   the announcement depends on the coordination converging during the event.
 - Facts duplicated from the program (headcount, talk and poster counts, session titles, keynote titles)
