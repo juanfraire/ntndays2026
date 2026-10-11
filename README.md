@@ -42,12 +42,12 @@ When it changes, mirror it here by hand (and regenerate `ntndays2026.ics` too).
 
 Standalone deck for the Day 1 opening (09:00-09:15), published at https://ntndays.space/welcome.html and
 linked from the opening row of `#program`. Reveal.js 5.1.0 from cdnjs, the site's own palette and font,
-13 slides, no build step. Keys: space or arrows to advance, `S` for speaker notes (the slot is split
+9 slides, no build step. Keys: space or arrows to advance, `S` for speaker notes (the slot is split
 between Vania, Juan and Peng there), `O` for the overview, `F` for fullscreen.
 
 - `welcome.html?print-pdf` then print to PDF gives a shareable deck and an offline backup. Make one
   before the event: the deck pulls Reveal, Font Awesome and Google Fonts from CDNs and needs the network.
-- Slide 11 announces the GDR RSD working group. It carries a comment saying it can be dropped, since
+- Slide 7 announces the GDR RSD working group. It carries a comment saying it can be dropped, since
   the announcement depends on the coordination converging during the event.
 - Facts duplicated from the program (headcount, talk and poster counts, session titles, keynote titles)
   have to be updated here too when `#program` changes.
@@ -93,7 +93,7 @@ Attendance is free, stated in the hero, in `#submit`, and as a zero-price `offer
 - [x] Program: poster session lists four posters (Filipe, Rolland, Srour, Maatouk) and Stefano
       Taborelli's demo, complete after the form closed on October 9; the heading says "Student posters
       and demos" because Maatouk is an M2 student
-- [x] Opening slides: `welcome.html`, 13 slides, linked from the opening row of `#program`
+- [x] Opening slides: `welcome.html`, 9 slides, linked from the opening row of `#program`
       (export a PDF backup with `?print-pdf` before travelling)
 - [x] `ntndays2026.ics`: one umbrella event plus 19 timed slots (Europe/Paris VTIMEZONE, CRLF); regenerate it
       by hand whenever `#program` changes

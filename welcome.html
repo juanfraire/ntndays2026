@@ -300,6 +300,12 @@
             color: var(--nebula-300);
         }
 
+        /* Technical sessions: same box, quieter than keynotes and the two highlights */
+        .agenda li.hs {
+            background: rgba(148, 163, 184, 0.06);
+            border: 1px solid rgba(75, 85, 99, 0.55);
+        }
+
         .agenda em {
             color: var(--muted);
             font-style: normal;
@@ -618,36 +624,7 @@
                 </aside>
             </section>
 
-            <!-- 2. Welcome -->
-            <section>
-                <span class="kicker"><i class="fas fa-hand-sparkles"></i> Welcome</span>
-                <h2>Two days, one community</h2>
-                <div class="rule"></div>
-                <div class="cards c3">
-                    <div class="card orbit">
-                        <h3>Vania Conan</h3>
-                        <p class="who">Cnam, CEDRIC</p>
-                    </div>
-                    <div class="card violet">
-                        <h3>Pengwenlong Gu</h3>
-                        <p class="who">Cnam, CEDRIC</p>
-                    </div>
-                    <div class="card orbit">
-                        <h3>Juan A. Fraire</h3>
-                        <p class="who">Inria, INSA Lyon</p>
-                    </div>
-                </div>
-                <p class="lead" style="margin-top:0.8em">
-                    Hosted by the Cnam, with the support of GDR RSD and GDR IASIS.
-                    Attendance is free, and it stays that way because our hosts and the GDRs carry the cost.
-                </p>
-                <aside class="notes">
-                    Vania: thanks to the Cnam and CEDRIC for the amphitheatre and the catering, to the two GDRs
-                    for the support, and to everyone who travelled. Hand over to Juan for the program.
-                </aside>
-            </section>
-
-            <!-- 3. Editions -->
+            <!-- 2. Editions -->
             <section>
                 <span class="kicker"><i class="fas fa-timeline"></i> Since 2023</span>
                 <h2>Fourth edition</h2>
@@ -657,7 +634,7 @@
                         <b>2023</b><span>Toulouse<br>IRIT, ENSEEIHT</span>
                     </div>
                     <div class="step">
-                        <b>2024</b><span>Grenoble</span>
+                        <b>2024</b><span>Grenoble<br>Grenoble INP, Ensimag</span>
                     </div>
                     <div class="step">
                         <b>2025</b><span>Toulouse<br>LAAS-CNRS</span>
@@ -693,10 +670,6 @@
                     <div class="stat"><b>1</b><span>roundtable</span></div>
                     <div class="stat"><b>0 &euro;</b><span>registration</span></div>
                 </div>
-                <p class="small muted" style="margin-top:0.9em">
-                    Registrations closed on October 9. Labs, operators, manufacturers, agencies and the
-                    European Commission are all in the room.
-                </p>
                 <aside class="notes">
                     Juan: a hundred registrations, our largest edition so far. Twenty-one talks selected from
                     the open call, two invited keynotes, a student poster session with a live demo, and a
@@ -709,22 +682,26 @@
                 <span class="kicker"><i class="far fa-calendar-check"></i> Tuesday 13 October</span>
                 <h2>Today</h2>
                 <div class="rule"></div>
-                <ul class="agenda">
+                <ul class="agenda" style="font-size:0.6em">
                     <li><span class="t">09:00</span><span>Opening <em>&middot; you are here</em></span></li>
                     <li class="hi"><span class="t">09:15</span><span><b>Keynote 1</b> &middot; Hassan Fawaz
-                            <em>&middot; Univity</em></span></li>
+                            <em>&middot; Univity</em><br><em>From Vision to Validation: Univity's 5G NTN
+                                Journey</em></span></li>
                     <li><span class="t">10:00</span><span>Coffee break</span></li>
-                    <li><span class="t">10:30</span><span><b>Session 1</b> &middot; Programmes, access, interference and
+                    <li class="hs"><span class="t">10:30</span><span><b>Session 1</b> &middot; Programmes, access, interference and
                             spectrum <em>&middot; 6 talks</em></span></li>
                     <li><span class="t">12:00</span><span>Lunch <em>&middot; posters on display</em></span></li>
-                    <li><span class="t">13:30</span><span><b>Session 2</b> &middot; Waveforms and access for satellite
+                    <li class="hs"><span class="t">13:30</span><span><b>Session 2</b> &middot; Waveforms and access for satellite
                             IoT <em>&middot; 5 talks</em></span></li>
                     <li><span class="t">14:45</span><span>Coffee break</span></li>
-                    <li class="hv"><span class="t">15:15</span><span><b>Poster session and demos</b></span></li>
+                    <li class="hv"><span class="t">15:15</span><span><b>Student posters and demos</b> &middot; 4 posters
+                            and 1 live demo<br><em>Miguel Filipe and Florian Rolland (LAAS-CNRS), Ali Srour (Cnam),
+                                Yanis Maatouk (Sorbonne), demo by Stefano Taborelli (Cnam)</em></span></li>
                     <li><span class="t">16:30</span><span>Day 1 wrap-up</span></li>
                 </ul>
                 <aside class="notes">
-                    Juan: today is keynote, two sessions, posters. We finish at 16:45.
+                    Juan: today is keynote, two sessions, posters. We finish at 16:45. The poster boards are up
+                    in the coffee area all day, and the presenters are PhD and master students.
                 </aside>
             </section>
 
@@ -733,115 +710,27 @@
                 <span class="kicker"><i class="far fa-calendar-check"></i> Wednesday 14 October</span>
                 <h2>Tomorrow</h2>
                 <div class="rule"></div>
-                <ul class="agenda">
+                <ul class="agenda" style="font-size:0.6em">
                     <li><span class="t">08:30</span><span>Breakfast</span></li>
                     <li class="hi"><span class="t">09:00</span><span><b>Keynote 2</b> &middot; Fran&ccedil;ois Baccelli
-                            <em>&middot; Inria, T&eacute;l&eacute;com Paris, LINCS</em></span></li>
+                            <em>&middot; Inria, T&eacute;l&eacute;com Paris, LINCS</em><br><em>Research on NTN: Design
+                                Tools, Regulation, and Cooperation</em></span></li>
                     <li><span class="t">09:45</span><span>Coffee break</span></li>
-                    <li><span class="t">10:15</span><span><b>Session 3</b> &middot; Constellation dynamics, emulation and
+                    <li class="hs"><span class="t">10:15</span><span><b>Session 3</b> &middot; Constellation dynamics, emulation and
                             orbital computing <em>&middot; 5 talks</em></span></li>
                     <li><span class="t">11:30</span><span>Lunch</span></li>
-                    <li><span class="t">13:00</span><span><b>Session 4</b> &middot; Small satellites, DTN and the Solar
+                    <li class="hs"><span class="t">13:00</span><span><b>Session 4</b> &middot; Small satellites, DTN and the Solar
                             System Internet <em>&middot; 5 talks</em></span></li>
                     <li><span class="t">14:15</span><span>Break</span></li>
-                    <li class="hv"><span class="t">14:40</span><span><b>Roundtable</b></span></li>
+                    <li class="hv"><span class="t">14:40</span><span><b>Roundtable</b> &middot; NTN: time to move from
+                            theory to implementation<br><em>Hassan Fawaz, Fran&ccedil;ois Baccelli, Christelle Caillouet
+                                and Isabelle Bucaille, moderated by Pengwenlong Gu</em></span></li>
                     <li><span class="t">15:40</span><span>Closing <em>&middot; room free at 16:00</em></span></li>
                 </ul>
                 <aside class="notes">
                     Juan: tomorrow is the symmetric day, and it ends at 16:00 sharp because the amphitheatre
-                    has another event at 17:00.
-                </aside>
-            </section>
-
-            <!-- 7. Keynotes -->
-            <section>
-                <span class="kicker"><i class="fas fa-microphone-lines"></i> Invited keynotes</span>
-                <h2>Two views of the field</h2>
-                <div class="rule"></div>
-                <div class="cards c2">
-                    <div class="card orbit">
-                        <p class="who"><i class="badge fas fa-clock"></i>Today 09:15</p>
-                        <h3>Hassan Fawaz</h3>
-                        <p class="who">Univity</p>
-                        <p style="margin-top:0.5em">From Vision to Validation: Univity's 5G NTN Journey</p>
-                    </div>
-                    <div class="card violet">
-                        <p class="who"><i class="badge fas fa-clock"></i>Tomorrow 09:00</p>
-                        <h3>Fran&ccedil;ois Baccelli</h3>
-                        <p class="who">Inria, T&eacute;l&eacute;com Paris, LINCS</p>
-                        <p style="margin-top:0.5em">Research on Non-Terrestrial Networks: Design Tools, Regulation,
-                            and Cooperation</p>
-                    </div>
-                </div>
-                <p class="lead" style="margin-top:0.9em">
-                    An operator building a constellation, and the mathematics and regulation behind the
-                    constellations we all study.
-                </p>
-                <aside class="notes">
-                    Juan: both keynotes are Cnam invitations. Abstracts and bios are on the website.
-                </aside>
-            </section>
-
-            <!-- 8. Posters -->
-            <section>
-                <span class="kicker violet"><i class="fas fa-image"></i> Today 15:15 to 16:30</span>
-                <h2>Student posters and demos</h2>
-                <div class="rule"></div>
-                <ul class="agenda" style="font-size:0.6em">
-                    <li><span class="t">Poster</span><span>Miguel Filipe
-                            <em>&middot; LAAS-CNRS</em><br>Breaking the GNSS dependency in direct-to-satellite cellular
-                            networks</span></li>
-                    <li><span class="t">Poster</span><span>Florian Rolland
-                            <em>&middot; LAAS-CNRS</em><br>TDMA for GNSS-free direct-to-satellite LPWAN</span></li>
-                    <li><span class="t">Poster</span><span>Ali Srour
-                            <em>&middot; Cnam</em><br>Energy-aware adaptive processing management for Open RAN
-                            UxNBs</span></li>
-                    <li><span class="t">Poster</span><span>Yanis Maatouk
-                            <em>&middot; Sorbonne Universit&eacute;</em><br>Geolocating Starlink users from RTT timing,
-                            behind a VPN</span></li>
-                    <li class="hv"><span class="t">Demo</span><span>Stefano Taborelli
-                            <em>&middot; Cnam</em><br>OCUDU-SkyLink: multi-connectivity in space-terrestrial 6G
-                            networks</span></li>
-                </ul>
-                <p class="small muted" style="margin-top:0.7em">
-                    Boards are up in the coffee area for the whole of today. The presenters are PhD and master
-                    students, so give them your hardest questions.
-                </p>
-                <aside class="notes">
-                    Juan or Peng: four posters and one live demo. Presenters stand by their boards during the
-                    session and the breaks.
-                </aside>
-            </section>
-
-            <!-- 9. Roundtable -->
-            <section>
-                <span class="kicker violet"><i class="fas fa-comments"></i> Roundtable &middot; tomorrow 14:40</span>
-                <h2>NTN: time to move from theory to implementation</h2>
-                <div class="rule"></div>
-                <div class="cards c2">
-                    <div class="card violet">
-                        <h3>Hassan Fawaz</h3>
-                        <p class="who">Univity</p>
-                    </div>
-                    <div class="card violet">
-                        <h3>Fran&ccedil;ois Baccelli</h3>
-                        <p class="who">Inria, T&eacute;l&eacute;com Paris, LINCS</p>
-                    </div>
-                    <div class="card violet">
-                        <h3>Christelle Caillouet</h3>
-                        <p class="who">Universit&eacute; C&ocirc;te d'Azur, I3S, Inria</p>
-                    </div>
-                    <div class="card violet">
-                        <h3>Isabelle Bucaille</h3>
-                        <p class="who">Thales</p>
-                    </div>
-                </div>
-                <p class="small muted" style="margin-top:0.8em">
-                    One hour of discussion with four panellists, moderated by Pengwenlong Gu. Bring your questions
-                    during the two days, we will feed them to the panel.
-                </p>
-                <aside class="notes">
-                    Peng: the roundtable closes the event. Collect questions from the floor over the two days.
+                    has another event at 17:00. Questions for the panel can reach us at any time during the
+                    two days.
                 </aside>
             </section>
 
@@ -852,8 +741,7 @@
                 <div class="rule"></div>
                 <ul class="rules">
                     <li><i class="fas fa-stopwatch"></i>
-                        <span><b>15 minutes per talk</b>, 12 of presentation and 3 of questions. The chairs keep
-                            time, and they will be strict: 21 talks leave no slack.</span>
+                        <span><b>15 minutes per talk</b>, 12 of presentation and 3 of questions.</span>
                     </li>
                     <li><i class="fas fa-laptop"></i>
                         <span><b>One laptop for all talks.</b> If we do not have your slides yet, find us during
@@ -861,7 +749,7 @@
                     </li>
                     <li><i class="fas fa-mug-hot"></i>
                         <span><b>Coffee and lunch</b> are served just outside the amphitheatre, where the posters
-                            are. Use the breaks, they are part of the program.</span>
+                            are.</span>
                     </li>
                     <li><i class="fas fa-door-open"></i>
                         <span><b>Amphith&eacute;&acirc;tre Jean-Baptiste Say</b>, access Y, lower level. The
