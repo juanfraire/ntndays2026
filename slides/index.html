@@ -141,6 +141,13 @@
             font-size: 0.88rem;
         }
 
+        .files {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
         .dl {
             display: inline-flex;
             align-items: center;
@@ -189,10 +196,11 @@
                 grid-template-columns: 54px 1fr;
             }
 
-            .dl,
+            .files,
             .pending {
                 grid-column: 2;
                 justify-self: start;
+                justify-content: flex-start;
             }
         }
     </style>
@@ -207,8 +215,8 @@
                 from the website and not indexed. Decks stay here until their authors agree to have them
                 published.</p>
             <a class="all" href="ntndays2026-slides.zip" download><span class="arrow">&darr;</span> Download all
-                (21.2 MB)</a>
-            <span class="count">8 of 23 decks received</span>
+                (25.5 MB)</a>
+            <span class="count">10 of 23 decks received</span>
         </header>
 
       <section>
@@ -224,7 +232,7 @@
           <div class="row has">
             <span class="time">10:30</span>
             <span class="meta"><b>Flavien Ronteix</b> <span class="aff">&middot; EC-JRC</span><br><span class="title">IRIS², a catalyst for 5G NTN and European technological sovereignty</span></span>
-            <a class="dl" href="d1-s1-1030-ronteix-iris2.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">1.2 MB</span></a>
+            <span class="files"><a class="dl" href="d1-s1-1030-ronteix-iris2.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">1.2 MB</span></a></span>
           </div>
           <div class="row no">
             <span class="time">10:45</span>
@@ -234,33 +242,33 @@
           <div class="row has">
             <span class="time">11:00</span>
             <span class="meta"><b>Ali Khalesi</b> <span class="aff">&middot; IPSA, LINCS</span><br><span class="title">Beyond coverage: how mega-constellations will shape the future of non-terrestrial networks</span></span>
-            <a class="dl" href="d1-s1-1100-khalesi-mega-constellations.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">816 KB</span></a>
+            <span class="files"><a class="dl" href="d1-s1-1100-khalesi-mega-constellations.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">816 KB</span></a></span>
           </div>
-          <div class="row no">
+          <div class="row has">
             <span class="time">11:15</span>
             <span class="meta"><b>Jihane Lghoury</b> <span class="aff">&middot; IRIT, Ericsson</span><br><span class="title">Interference-aware beam hopping scheduling for LEO satellite networks</span></span>
-            <span class="pending">not received</span>
+            <span class="files"><a class="dl" href="d1-s1-1115-lghoury-beam-hopping.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">1.2 MB</span></a><a class="dl" href="d1-s1-1115-lghoury-beam-hopping.pptx" download><span class="arrow">&darr;</span> PPTX <span class="size">2.2 MB</span></a></span>
           </div>
           <div class="row has">
             <span class="time">11:30</span>
             <span class="meta"><b>Ashutosh Balakrishnan</b> <span class="aff">&middot; Télécom Paris</span><br><span class="title">Doppler-Shannon association framework for non-terrestrial networks</span></span>
-            <a class="dl" href="d1-s1-1130-balakrishnan-doppler-shannon.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">2.2 MB</span></a>
+            <span class="files"><a class="dl" href="d1-s1-1130-balakrishnan-doppler-shannon.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">2.2 MB</span></a></span>
           </div>
           <div class="row has">
             <span class="time">11:45</span>
             <span class="meta"><b>Graeme Young</b> <span class="aff">&middot; SKAO</span><br><span class="title">Radio astronomy protection for direct-to-device applications</span></span>
-            <a class="dl" href="d1-s1-1145-young-radio-astronomy.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">3.8 MB</span></a>
+            <span class="files"><a class="dl" href="d1-s1-1145-young-radio-astronomy.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">3.8 MB</span></a></span>
           </div>
           <h3 class="sess">Session 2</h3>
           <div class="row has">
             <span class="time">13:30</span>
             <span class="meta"><b>Omar El Marzougui</b> <span class="aff">&middot; Toulouse INP, IRIT</span><br><span class="title">Chirp-based waveform design for next generation non-terrestrial networks</span></span>
-            <a class="dl" href="d1-s2-1330-elmarzougui-chirp-waveform.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">2.5 MB</span></a>
+            <span class="files"><a class="dl" href="d1-s2-1330-elmarzougui-chirp-waveform.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">2.5 MB</span></a></span>
           </div>
           <div class="row has">
             <span class="time">13:45</span>
             <span class="meta"><b>Antony Pottier</b> <span class="aff">&middot; CEA-Leti</span><br><span class="title">Study of ODDM on NTN channels for LEO satellite communications</span></span>
-            <a class="dl" href="d1-s2-1345-pottier-oddm.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">2.5 MB</span></a>
+            <span class="files"><a class="dl" href="d1-s2-1345-pottier-oddm.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">2.5 MB</span></a></span>
           </div>
           <div class="row no">
             <span class="time">14:00</span>
@@ -272,10 +280,10 @@
             <span class="meta"><b>Antonin Le Floch</b> <span class="aff">&middot; Kinéis</span><br><span class="title">NTN-IoT performance survey: from simulation to in-orbit testing</span></span>
             <span class="pending">not received</span>
           </div>
-          <div class="row no">
+          <div class="row has">
             <span class="time">14:30</span>
             <span class="meta"><b>Carlos Fernandez Hernandez</b> <span class="aff">&middot; INSA Lyon, Inria</span><br><span class="title">From ground to space: efficient downlink scheduling for direct-to-satellite LoRaWAN</span></span>
-            <span class="pending">not received</span>
+            <span class="files"><a class="dl" href="d1-s2-1430-fernandez-hernandez-downlink.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">2.3 MB</span></a></span>
           </div>
         </div>
       </section>
@@ -302,7 +310,7 @@
           <div class="row has">
             <span class="time">10:45</span>
             <span class="meta"><b>Louis Barbier</b> <span class="aff">&middot; ISAE-SUPAERO</span><br><span class="title">SatComTopology and SatGoNetEm: a flexible platform for dynamic satellite network experimentation</span></span>
-            <a class="dl" href="d2-s3-1045-barbier-satcomtopology.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">3.0 MB</span></a>
+            <span class="files"><a class="dl" href="d2-s3-1045-barbier-satcomtopology.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">3.0 MB</span></a></span>
           </div>
           <div class="row no">
             <span class="time">11:00</span>
@@ -318,7 +326,7 @@
           <div class="row has">
             <span class="time">13:00</span>
             <span class="meta"><b>Nicolas Gresset-Bourgeois</b> <span class="aff">&middot; TéSA</span><br><span class="title">On the optimal number of relays for nanosatellite swarm downlink</span></span>
-            <a class="dl" href="d2-s4-1300-gresset-bourgeois-relays.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">6.8 MB</span></a>
+            <span class="files"><a class="dl" href="d2-s4-1300-gresset-bourgeois-relays.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">6.8 MB</span></a></span>
           </div>
           <div class="row no">
             <span class="time">13:15</span>
@@ -344,7 +352,7 @@
       </section>
 
         <footer>
-            Updated 12 October 2026, 19:36. Back to the <a href="../">programme</a>.
+            Updated 13 October 2026, 00:00. Back to the <a href="../">programme</a>.
         </footer>
     </div>
 </body>

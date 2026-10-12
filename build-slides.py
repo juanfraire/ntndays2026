@@ -17,6 +17,8 @@ SLIDES = "slides"
 ZIP_NAME = "ntndays2026-slides.zip"
 
 # (day, session, time, speaker, affiliation, title, file or None)
+# The last field takes one file name, or a tuple of them when a speaker also sends the pptx
+# they will actually present from.
 TALKS = [
     (1, "Keynote", "09:15", "Hassan Fawaz", "Univity",
      "From Vision to Validation: Univity's 5G NTN Journey", None),
@@ -29,7 +31,8 @@ TALKS = [
      "Beyond coverage: how mega-constellations will shape the future of non-terrestrial networks",
      "d1-s1-1100-khalesi-mega-constellations.pdf"),
     (1, "Session 1", "11:15", "Jihane Lghoury", "IRIT, Ericsson",
-     "Interference-aware beam hopping scheduling for LEO satellite networks", None),
+     "Interference-aware beam hopping scheduling for LEO satellite networks",
+     ("d1-s1-1115-lghoury-beam-hopping.pdf", "d1-s1-1115-lghoury-beam-hopping.pptx")),
     (1, "Session 1", "11:30", "Ashutosh Balakrishnan", "Télécom Paris",
      "Doppler-Shannon association framework for non-terrestrial networks",
      "d1-s1-1130-balakrishnan-doppler-shannon.pdf"),
@@ -47,7 +50,8 @@ TALKS = [
     (1, "Session 2", "14:15", "Antonin Le Floch", "Kinéis",
      "NTN-IoT performance survey: from simulation to in-orbit testing", None),
     (1, "Session 2", "14:30", "Carlos Fernandez Hernandez", "INSA Lyon, Inria",
-     "From ground to space: efficient downlink scheduling for direct-to-satellite LoRaWAN", None),
+     "From ground to space: efficient downlink scheduling for direct-to-satellite LoRaWAN",
+     "d1-s2-1430-fernandez-hernandez-downlink.pdf"),
     (2, "Keynote", "09:00", "François Baccelli", "Inria, Télécom Paris, LINCS",
      "Research on Non-Terrestrial Networks: Design Tools, Regulation, and Cooperation", None),
     (2, "Session 3", "10:15", "Emanuele Mengoli", "Télécom Paris, Inria",
@@ -86,15 +90,24 @@ def main():
     here = os.path.dirname(os.path.abspath(__file__))
     os.chdir(here)
 
-    present = [t for t in TALKS if t[6] and os.path.exists(os.path.join(SLIDES, t[6]))]
-    missing_files = [t[6] for t in TALKS if t[6] and not os.path.exists(os.path.join(SLIDES, t[6]))]
-    for m in missing_files:
-        print(f"WARNING: listed but not on disk: {m}")
+    def files_of(talk):
+        """Every file a row claims, as a list, whether the table holds one name or several."""
+        raw = talk[6]
+        if not raw:
+            return []
+        return [raw] if isinstance(raw, str) else list(raw)
 
-    on_disk = {f for f in os.listdir(SLIDES) if f.lower().endswith(".pdf")}
-    unlisted = sorted(on_disk - {t[6] for t in TALKS if t[6]})
-    for u in unlisted:
+    listed = [f for t in TALKS for f in files_of(t)]
+    for f in listed:
+        if not os.path.exists(os.path.join(SLIDES, f)):
+            print(f"WARNING: listed but not on disk: {f}")
+
+    on_disk = {f for f in os.listdir(SLIDES) if f.lower().endswith((".pdf", ".pptx", ".ppt", ".key"))}
+    for u in sorted(on_disk - set(listed)):
         print(f"WARNING: on disk but not in TALKS: {u}")
+
+    present = [t for t in TALKS
+               if any(os.path.exists(os.path.join(SLIDES, f)) for f in files_of(t))]
 
     # zip, rebuilt from scratch every time
     zip_path = os.path.join(SLIDES, ZIP_NAME)
@@ -102,12 +115,15 @@ def main():
         os.remove(zip_path)
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
         for t in present:
-            z.write(os.path.join(SLIDES, t[6]), t[6])
+            for f in files_of(t):
+                if os.path.exists(os.path.join(SLIDES, f)):
+                    z.write(os.path.join(SLIDES, f), f)
     zip_size = human(os.path.getsize(zip_path))
 
     rows = []
     last_key = None
-    for day, session, time, who, aff, title, fname in TALKS:
+    for talk in TALKS:
+        day, session, time, who, aff, title = talk[:6]
         key = (day, session)
         if key != last_key:
             if last_key is not None and last_key[0] != day:
@@ -117,10 +133,15 @@ def main():
                 rows.append(f'      <section>\n        <h2>{DAY_LABEL[day]}</h2>\n        <div class="rows">')
             rows.append(f'          <h3 class="sess">{session}</h3>')
             last_key = key
-        if fname and os.path.exists(os.path.join(SLIDES, fname)):
-            size = human(os.path.getsize(os.path.join(SLIDES, fname)))
-            action = (f'<a class="dl" href="{fname}" download>'
-                      f'<span class="arrow">&darr;</span> PDF <span class="size">{size}</span></a>')
+        have = [f for f in files_of(talk) if os.path.exists(os.path.join(SLIDES, f))]
+        if have:
+            links = []
+            for f in have:
+                kind = f.rsplit(".", 1)[-1].upper()
+                size = human(os.path.getsize(os.path.join(SLIDES, f)))
+                links.append(f'<a class="dl" href="{f}" download>'
+                             f'<span class="arrow">&darr;</span> {kind} <span class="size">{size}</span></a>')
+            action = f'<span class="files">{"".join(links)}</span>'
             state = "has"
         else:
             action = '<span class="pending">not received</span>'
@@ -291,6 +312,13 @@ TEMPLATE = """<!DOCTYPE html>
             font-size: 0.88rem;
         }}
 
+        .files {{
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }}
+
         .dl {{
             display: inline-flex;
             align-items: center;
@@ -339,10 +367,11 @@ TEMPLATE = """<!DOCTYPE html>
                 grid-template-columns: 54px 1fr;
             }}
 
-            .dl,
+            .files,
             .pending {{
                 grid-column: 2;
                 justify-self: start;
+                justify-content: flex-start;
             }}
         }}
     </style>
