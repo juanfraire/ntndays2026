@@ -1,0 +1,376 @@
+#!/usr/bin/env python3
+"""Rebuild slides/index.html and slides/ntndays2026-slides.zip from the PDFs in slides/.
+
+Run it from the repository root after dropping new decks into slides/:
+
+    python3 build-slides.py
+
+Naming convention for the PDFs: d<day>-s<session>-<HHMM>-<speaker>-<topic>.pdf, which
+sorts in program order. Add the file name to TALKS below so the page picks it up.
+"""
+
+import os
+import zipfile
+from datetime import datetime
+
+SLIDES = "slides"
+ZIP_NAME = "ntndays2026-slides.zip"
+
+# (day, session, time, speaker, affiliation, title, file or None)
+TALKS = [
+    (1, "Keynote", "09:15", "Hassan Fawaz", "Univity",
+     "From Vision to Validation: Univity's 5G NTN Journey", None),
+    (1, "Session 1", "10:30", "Flavien Ronteix", "EC-JRC",
+     "IRIS², a catalyst for 5G NTN and European technological sovereignty",
+     "d1-s1-1030-ronteix-iris2.pdf"),
+    (1, "Session 1", "10:45", "Nicola Accettura", "LAAS-CNRS",
+     "Standalone standard satellite-aided Internet connectivity", None),
+    (1, "Session 1", "11:00", "Ali Khalesi", "IPSA, LINCS",
+     "Beyond coverage: how mega-constellations will shape the future of non-terrestrial networks",
+     "d1-s1-1100-khalesi-mega-constellations.pdf"),
+    (1, "Session 1", "11:15", "Jihane Lghoury", "IRIT, Ericsson",
+     "Interference-aware beam hopping scheduling for LEO satellite networks", None),
+    (1, "Session 1", "11:30", "Ashutosh Balakrishnan", "Télécom Paris",
+     "Doppler-Shannon association framework for non-terrestrial networks",
+     "d1-s1-1130-balakrishnan-doppler-shannon.pdf"),
+    (1, "Session 1", "11:45", "Graeme Young", "SKAO",
+     "Radio astronomy protection for direct-to-device applications",
+     "d1-s1-1145-young-radio-astronomy.pdf"),
+    (1, "Session 2", "13:30", "Omar El Marzougui", "Toulouse INP, IRIT",
+     "Chirp-based waveform design for next generation non-terrestrial networks",
+     "d1-s2-1330-elmarzougui-chirp-waveform.pdf"),
+    (1, "Session 2", "13:45", "Antony Pottier", "CEA-Leti",
+     "Study of ODDM on NTN channels for LEO satellite communications",
+     "d1-s2-1345-pottier-oddm.pdf"),
+    (1, "Session 2", "14:00", "Vincent Deslandes", "Kinéis",
+     "Kinéis wide area network for satellite IoT: performance and products", None),
+    (1, "Session 2", "14:15", "Antonin Le Floch", "Kinéis",
+     "NTN-IoT performance survey: from simulation to in-orbit testing", None),
+    (1, "Session 2", "14:30", "Carlos Fernandez Hernandez", "INSA Lyon, Inria",
+     "From ground to space: efficient downlink scheduling for direct-to-satellite LoRaWAN", None),
+    (2, "Keynote", "09:00", "François Baccelli", "Inria, Télécom Paris, LINCS",
+     "Research on Non-Terrestrial Networks: Design Tools, Regulation, and Cooperation", None),
+    (2, "Session 3", "10:15", "Emanuele Mengoli", "Télécom Paris, Inria",
+     "Handover dynamics in LEO non-terrestrial networks: a stochastic-geometry view", None),
+    (2, "Session 3", "10:30", "Sanjoy Kumar Jhawar", "Télécom Paris, Inria",
+     "Seasonal statistics of Shannon rate in a dynamical Poisson-Voronoi cell", None),
+    (2, "Session 3", "10:45", "Louis Barbier", "ISAE-SUPAERO",
+     "SatComTopology and SatGoNetEm: a flexible platform for dynamic satellite network experimentation",
+     "d2-s3-1045-barbier-satcomtopology.pdf"),
+    (2, "Session 3", "11:00", "Bastien Tauran", "Viveris Technologies",
+     "CERES, a satellite constellation network emulator", None),
+    (2, "Session 3", "11:15", "Juan A. Fraire", "Inria, INSA Lyon",
+     "Ungrounded computing in low-Earth orbit", None),
+    (2, "Session 4", "13:00", "Nicolas Gresset-Bourgeois", "TéSA",
+     "On the optimal number of relays for nanosatellite swarm downlink",
+     "d2-s4-1300-gresset-bourgeois-relays.pdf"),
+    (2, "Session 4", "13:15", "Charlélie Pignol", "UGA, CSUG, LIG",
+     "ThingSat: an in-orbit research vehicle for experimenting with satellite IoT", None),
+    (2, "Session 4", "13:30", "Sarah Theoulle", "LIRMM",
+     "CSPCL: a stepwise, non-disruptive transition to Delay-Tolerant Networking", None),
+    (2, "Session 4", "13:45", "Alice Le Bihan", "INSA Lyon",
+     "A tool suite towards a Solar System Internet digital twin", None),
+    (2, "Session 4", "14:00", "Alejandro Matias Toledo", "Concordia University",
+     "Lifespan-aware contact plan design for interplanetary free-space optical networks", None),
+]
+
+DAY_LABEL = {1: "Day 1 &middot; Tuesday 13 October", 2: "Day 2 &middot; Wednesday 14 October"}
+
+
+def human(nbytes):
+    mb = nbytes / 1024 / 1024
+    return f"{mb:.1f} MB" if mb >= 1 else f"{nbytes / 1024:.0f} KB"
+
+
+def main():
+    here = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(here)
+
+    present = [t for t in TALKS if t[6] and os.path.exists(os.path.join(SLIDES, t[6]))]
+    missing_files = [t[6] for t in TALKS if t[6] and not os.path.exists(os.path.join(SLIDES, t[6]))]
+    for m in missing_files:
+        print(f"WARNING: listed but not on disk: {m}")
+
+    on_disk = {f for f in os.listdir(SLIDES) if f.lower().endswith(".pdf")}
+    unlisted = sorted(on_disk - {t[6] for t in TALKS if t[6]})
+    for u in unlisted:
+        print(f"WARNING: on disk but not in TALKS: {u}")
+
+    # zip, rebuilt from scratch every time
+    zip_path = os.path.join(SLIDES, ZIP_NAME)
+    if os.path.exists(zip_path):
+        os.remove(zip_path)
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+        for t in present:
+            z.write(os.path.join(SLIDES, t[6]), t[6])
+    zip_size = human(os.path.getsize(zip_path))
+
+    rows = []
+    last_key = None
+    for day, session, time, who, aff, title, fname in TALKS:
+        key = (day, session)
+        if key != last_key:
+            if last_key is not None and last_key[0] != day:
+                rows.append("        </div>\n      </section>")
+                rows.append(f'      <section>\n        <h2>{DAY_LABEL[day]}</h2>\n        <div class="rows">')
+            elif last_key is None:
+                rows.append(f'      <section>\n        <h2>{DAY_LABEL[day]}</h2>\n        <div class="rows">')
+            rows.append(f'          <h3 class="sess">{session}</h3>')
+            last_key = key
+        if fname and os.path.exists(os.path.join(SLIDES, fname)):
+            size = human(os.path.getsize(os.path.join(SLIDES, fname)))
+            action = (f'<a class="dl" href="{fname}" download>'
+                      f'<span class="arrow">&darr;</span> PDF <span class="size">{size}</span></a>')
+            state = "has"
+        else:
+            action = '<span class="pending">not received</span>'
+            state = "no"
+        rows.append(
+            f'          <div class="row {state}">\n'
+            f'            <span class="time">{time}</span>\n'
+            f'            <span class="meta"><b>{who}</b> <span class="aff">&middot; {aff}</span><br>'
+            f'<span class="title">{title}</span></span>\n'
+            f'            {action}\n'
+            f'          </div>'
+        )
+    rows.append("        </div>\n      </section>")
+
+    html = TEMPLATE.format(
+        rows="\n".join(rows),
+        got=len(present),
+        total=len([t for t in TALKS if t[1] != "Keynote"]) + 2,
+        zip_name=ZIP_NAME,
+        zip_size=zip_size,
+        updated=datetime.now().strftime("%d %B %Y, %H:%M"),
+    )
+    with open(os.path.join(SLIDES, "index.html"), "w", encoding="utf-8") as fh:
+        fh.write(html)
+    print(f"slides/index.html written: {len(present)} decks, zip {zip_size}")
+
+
+TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTN Days 2026 | Speaker slides</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {{
+            --orbit-300: #fdba74;
+            --orbit-400: #fb923c;
+            --orbit-500: #f97316;
+            --nebula-400: #a78bfa;
+            --ink: #030712;
+            --panel: #0b1220;
+            --line: #1f2937;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+        }}
+
+        * {{
+            box-sizing: border-box;
+        }}
+
+        body {{
+            margin: 0;
+            padding: 0 16px 64px;
+            background: var(--ink);
+            color: var(--text);
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            line-height: 1.5;
+        }}
+
+        .wrap {{
+            max-width: 940px;
+            margin: 0 auto;
+        }}
+
+        header {{
+            padding: 48px 0 24px;
+            border-bottom: 1px solid var(--line);
+        }}
+
+        h1 {{
+            margin: 0 0 6px;
+            font-size: 2rem;
+            background: linear-gradient(90deg, var(--orbit-400), var(--nebula-400));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }}
+
+        .sub {{
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }}
+
+        .notice {{
+            margin: 20px 0 0;
+            padding: 12px 14px;
+            border: 1px solid rgba(194, 65, 12, 0.5);
+            background: rgba(249, 115, 22, 0.08);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #fed7aa;
+        }}
+
+        .all {{
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 22px 0 4px;
+            padding: 12px 20px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #ea580c, #f97316);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }}
+
+        .all:hover {{
+            opacity: 0.9;
+        }}
+
+        .count {{
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-left: 12px;
+        }}
+
+        h2 {{
+            margin: 44px 0 4px;
+            font-size: 1.3rem;
+        }}
+
+        .sess {{
+            margin: 26px 0 8px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--orbit-300);
+            font-weight: 600;
+        }}
+
+        .row {{
+            display: grid;
+            grid-template-columns: 62px 1fr auto;
+            gap: 14px;
+            align-items: center;
+            padding: 12px 14px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--panel);
+            margin-bottom: 8px;
+        }}
+
+        .row.no {{
+            background: transparent;
+            border-style: dashed;
+            opacity: 0.6;
+        }}
+
+        .time {{
+            color: var(--orbit-300);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }}
+
+        .aff {{
+            color: var(--muted);
+            font-weight: 400;
+        }}
+
+        .title {{
+            color: var(--muted);
+            font-size: 0.88rem;
+        }}
+
+        .dl {{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(194, 65, 12, 0.6);
+            color: var(--orbit-300);
+            text-decoration: none;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }}
+
+        .dl:hover {{
+            background: rgba(249, 115, 22, 0.12);
+        }}
+
+        .arrow {{
+            font-size: 1rem;
+        }}
+
+        .size {{
+            color: var(--muted);
+        }}
+
+        .pending {{
+            color: var(--muted);
+            font-size: 0.82rem;
+            white-space: nowrap;
+        }}
+
+        footer {{
+            margin-top: 48px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.82rem;
+        }}
+
+        footer a {{
+            color: var(--orbit-400);
+        }}
+
+        @media (max-width: 640px) {{
+            .row {{
+                grid-template-columns: 54px 1fr;
+            }}
+
+            .dl,
+            .pending {{
+                grid-column: 2;
+                justify-self: start;
+            }}
+        }}
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Speaker slides</h1>
+            <p class="sub">NTN Days 2026 &middot; Cnam, Paris &middot; 13&ndash;14 October 2026</p>
+            <p class="notice">Working page for the organizers and the presentation desk. It is not linked
+                from the website and not indexed. Decks stay here until their authors agree to have them
+                published.</p>
+            <a class="all" href="{zip_name}" download><span class="arrow">&darr;</span> Download all
+                ({zip_size})</a>
+            <span class="count">{got} of {total} decks received</span>
+        </header>
+
+{rows}
+
+        <footer>
+            Updated {updated}. Back to the <a href="../">programme</a>.
+        </footer>
+    </div>
+</body>
+
+</html>
+"""
+
+if __name__ == "__main__":
+    main()

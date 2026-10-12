@@ -55,6 +55,22 @@ between Vania, Juan and Peng there), `O` for the overview, `F` for fullscreen.
 - Facts duplicated from the program (headcount, talk and poster counts, session titles, keynote titles)
   have to be updated here too when `#program` changes.
 
+### Speaker slides (`slides/`)
+
+Unlisted download page at https://ntndays.space/slides/ for the presentation laptop: every talk in
+programme order, a download link for the decks received and a "not received" marker for the rest, plus
+a zip of everything. It is `noindex, nofollow` and nothing on the site links to it, because the decks
+are not published until their authors agree.
+
+PDFs are named `d<day>-s<session>-<HHMM>-<speaker>-<topic>.pdf`, so a plain sort is programme order.
+After dropping new decks into `slides/`, add the file name to the `TALKS` table in `build-slides.py`
+and run `python3 build-slides.py` from the repository root: it rewrites `slides/index.html` (counts,
+file sizes, timestamp) and rebuilds `slides/ntndays2026-slides.zip`. The script warns about files
+listed but missing, and about PDFs on disk that no row claims.
+
+When the authors agree to publication, link the page from `#program` and drop the notice paragraph in
+the template.
+
 | Item | Link |
 |---|---|
 | Talk proposal form | https://forms.gle/UmhKRHDkSfNrGEkp7 |
