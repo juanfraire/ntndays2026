@@ -77,8 +77,9 @@ TALKS = [
      "CSPCL: a stepwise, non-disruptive transition to Delay-Tolerant Networking", None),
     (2, "Session 4", "13:45", "Alice Le Bihan", "INSA Lyon",
      "A tool suite towards a Solar System Internet digital twin", None),
-    (2, "Session 4", "14:00", "Alejandro Matias Toledo", "Concordia University",
-     "Lifespan-aware contact plan design for interplanetary free-space optical networks", None),
+    (2, "Session 4", "14:00", "Alejandro Matias Toledo", "National University of Córdoba",
+     "Lifespan-aware contact plan design for interplanetary free-space optical networks",
+     "d2-s4-1400-toledo-contact-plan.pdf"),
 ]
 
 DAY_LABEL = {1: "Day 1 &middot; Tuesday 13 October", 2: "Day 2 &middot; Wednesday 14 October"}

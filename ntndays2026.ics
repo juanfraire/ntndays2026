@@ -106,8 +106,9 @@ DESCRIPTION:10:30 Flavien Ronteix (EC-JRC): IRIS2\, a catalyst for 5G NTN
  T\, Ericsson): Interference-aware beam hopping scheduling for LEO satell
  ite networks using soft-conflict graph coloring\n11:30 Ashutosh Balakris
  hnan (Telecom Paris): Doppler-Shannon association framework for non-terr
- estrial networks\n11:45 Graeme Young (SKAO): Radio astronomy protection 
- for direct-to-device applications
+ estrial networks\, going beyond closest point association\n11:45 Graeme 
+ Young (SKAO): Radio astronomy protection for direct-to-device applicatio
+ ns
 LOCATION:Amphitheatre Jean-Baptiste Say (access Y\, lower level)\, Cnam\,
   292 Rue Saint-Martin\, 75003 Paris\, France
 URL:https://ntndays.space/#program
@@ -283,8 +284,9 @@ DESCRIPTION:13:00 Nicolas Gresset-Bourgeois (TeSA): On the optimal number
  0 Sarah Theoulle (LIRMM): CSPCL\, a stepwise\, non-disruptive transition
   to Delay-Tolerant Networking for CubeSat operators\n13:45 Alice Le Biha
  n (INSA Lyon): A tool suite towards a Solar System Internet digital twin
- \n14:00 Alejandro Matias Toledo (Concordia University): Lifespan-awareco
- ntact plan design for interplanetary free-space optical networks
+ \n14:00 Alejandro Matias Toledo (National University of Cordoba): Lifesp
+ an-aware contact plan design for interplanetary free-space optical netwo
+ rks
 LOCATION:Amphitheatre Jean-Baptiste Say (access Y\, lower level)\, Cnam\,
   292 Rue Saint-Martin\, 75003 Paris\, France
 URL:https://ntndays.space/#program-day2
