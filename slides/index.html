@@ -70,27 +70,15 @@
             color: #fed7aa;
         }
 
-        .all {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin: 22px 0 4px;
-            padding: 12px 20px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, #ea580c, #f97316);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .all:hover {
-            opacity: 0.9;
-        }
 
         .count {
             color: var(--muted);
             font-size: 0.85rem;
-            margin-left: 12px;
+            margin: 20px 0 0;
+        }
+
+        .count b {
+            color: var(--text);
         }
 
         h2 {
@@ -99,12 +87,39 @@
         }
 
         .sess {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
             margin: 26px 0 8px;
             font-size: 0.78rem;
             text-transform: uppercase;
             letter-spacing: 0.14em;
             color: var(--orbit-300);
             font-weight: 600;
+        }
+
+        .zip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #ea580c, #f97316);
+            color: #fff;
+            text-decoration: none;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 0.82rem;
+        }
+
+        .zip:hover {
+            opacity: 0.9;
+        }
+
+        .zip .size {
+            color: rgba(255, 255, 255, 0.75);
         }
 
         .row {
@@ -214,9 +229,8 @@
             <p class="notice">Working page for the organizers and the presentation desk. It is not linked
                 from the website and not indexed. Decks stay here until their authors agree to have them
                 published.</p>
-            <a class="all" href="ntndays2026-slides.zip" download><span class="arrow">&darr;</span> Download all
-                (27.0 MB)</a>
-            <span class="count">11 of 23 decks received</span>
+            <p class="count"><b>13 of 23</b> decks received. Each session has its own zip next
+                to its heading, so the desk can pull one session at a time.</p>
         </header>
 
       <section>
@@ -228,7 +242,7 @@
             <span class="meta"><b>Hassan Fawaz</b> <span class="aff">&middot; Univity</span><br><span class="title">From Vision to Validation: Univity's 5G NTN Journey</span></span>
             <span class="pending">not received</span>
           </div>
-          <h3 class="sess">Session 1</h3>
+          <h3 class="sess">Session 1<a class="zip" href="ntndays2026-slides-d1-s1.zip" download><span class="arrow">&darr;</span> 7 files <span class="size">11.7 MB</span></a></h3>
           <div class="row has">
             <span class="time">10:30</span>
             <span class="meta"><b>Flavien Ronteix</b> <span class="aff">&middot; EC-JRC</span><br><span class="title">IRIS², a catalyst for 5G NTN and European technological sovereignty</span></span>
@@ -259,7 +273,7 @@
             <span class="meta"><b>Graeme Young</b> <span class="aff">&middot; SKAO</span><br><span class="title">Radio astronomy protection for direct-to-device applications</span></span>
             <span class="files"><a class="dl" href="d1-s1-1145-young-radio-astronomy.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">3.8 MB</span></a></span>
           </div>
-          <h3 class="sess">Session 2</h3>
+          <h3 class="sess">Session 2<a class="zip" href="ntndays2026-slides-d1-s2.zip" download><span class="arrow">&darr;</span> 7 files <span class="size">23.1 MB</span></a></h3>
           <div class="row has">
             <span class="time">13:30</span>
             <span class="meta"><b>Omar El Marzougui</b> <span class="aff">&middot; Toulouse INP, IRIT</span><br><span class="title">Chirp-based waveform design for next generation non-terrestrial networks</span></span>
@@ -270,15 +284,15 @@
             <span class="meta"><b>Antony Pottier</b> <span class="aff">&middot; CEA-Leti</span><br><span class="title">Study of ODDM on NTN channels for LEO satellite communications</span></span>
             <span class="files"><a class="dl" href="d1-s2-1345-pottier-oddm.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">2.5 MB</span></a></span>
           </div>
-          <div class="row no">
+          <div class="row has">
             <span class="time">14:00</span>
-            <span class="meta"><b>Vincent Deslandes</b> <span class="aff">&middot; Kinéis</span><br><span class="title">Kinéis wide area network for satellite IoT: performance and products</span></span>
-            <span class="pending">not received</span>
+            <span class="meta"><b>Vincent Deslandes</b> <span class="aff">&middot; Kinéis</span><br><span class="title">Kinéis wide area network for satellite IoT: performance and protocol optimisation</span></span>
+            <span class="files"><a class="dl" href="d1-s2-1400-deslandes-kiwan.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">1.4 MB</span></a><a class="dl" href="d1-s2-1400-deslandes-kiwan.pptx" download><span class="arrow">&darr;</span> PPTX <span class="size">7.5 MB</span></a></span>
           </div>
-          <div class="row no">
+          <div class="row has">
             <span class="time">14:15</span>
             <span class="meta"><b>Antonin Le Floch</b> <span class="aff">&middot; Kinéis</span><br><span class="title">NTN-IoT performance survey: from simulation to in-orbit testing</span></span>
-            <span class="pending">not received</span>
+            <span class="files"><a class="dl" href="d1-s2-1415-lefloch-ntn-iot-survey.pdf" download><span class="arrow">&darr;</span> PDF <span class="size">1.6 MB</span></a><a class="dl" href="d1-s2-1415-lefloch-ntn-iot-survey.pptx" download><span class="arrow">&darr;</span> PPTX <span class="size">7.4 MB</span></a></span>
           </div>
           <div class="row has">
             <span class="time">14:30</span>
@@ -296,7 +310,7 @@
             <span class="meta"><b>François Baccelli</b> <span class="aff">&middot; Inria, Télécom Paris, LINCS</span><br><span class="title">Research on Non-Terrestrial Networks: Design Tools, Regulation, and Cooperation</span></span>
             <span class="pending">not received</span>
           </div>
-          <h3 class="sess">Session 3</h3>
+          <h3 class="sess">Session 3<a class="zip" href="ntndays2026-slides-d2-s3.zip" download><span class="arrow">&darr;</span> 1 file <span class="size">3.0 MB</span></a></h3>
           <div class="row no">
             <span class="time">10:15</span>
             <span class="meta"><b>Emanuele Mengoli</b> <span class="aff">&middot; Télécom Paris, Inria</span><br><span class="title">Handover dynamics in LEO non-terrestrial networks: a stochastic-geometry view</span></span>
@@ -322,7 +336,7 @@
             <span class="meta"><b>Juan A. Fraire</b> <span class="aff">&middot; Inria, INSA Lyon</span><br><span class="title">Ungrounded computing in low-Earth orbit</span></span>
             <span class="pending">not received</span>
           </div>
-          <h3 class="sess">Session 4</h3>
+          <h3 class="sess">Session 4<a class="zip" href="ntndays2026-slides-d2-s4.zip" download><span class="arrow">&darr;</span> 1 file <span class="size">6.5 MB</span></a></h3>
           <div class="row has">
             <span class="time">13:00</span>
             <span class="meta"><b>Nicolas Gresset-Bourgeois</b> <span class="aff">&middot; TéSA</span><br><span class="title">On the optimal number of relays for nanosatellite swarm downlink</span></span>
@@ -352,7 +366,7 @@
       </section>
 
         <footer>
-            Updated 13 October 2026, 09:14. Back to the <a href="../">programme</a>.
+            Updated 13 October 2026, 10:48. Back to the <a href="../">programme</a>.
         </footer>
     </div>
 </body>

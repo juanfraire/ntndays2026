@@ -14,7 +14,7 @@ import zipfile
 from datetime import datetime
 
 SLIDES = "slides"
-ZIP_NAME = "ntndays2026-slides.zip"
+ZIP_PREFIX = "ntndays2026-slides"
 
 # (day, session, time, speaker, affiliation, title, file or None)
 # The last field takes one file name, or a tuple of them when a speaker also sends the pptx
@@ -47,9 +47,11 @@ TALKS = [
      "Study of ODDM on NTN channels for LEO satellite communications",
      "d1-s2-1345-pottier-oddm.pdf"),
     (1, "Session 2", "14:00", "Vincent Deslandes", "Kinéis",
-     "Kinéis wide area network for satellite IoT: performance and products", None),
+     "Kinéis wide area network for satellite IoT: performance and protocol optimisation",
+     ("d1-s2-1400-deslandes-kiwan.pdf", "d1-s2-1400-deslandes-kiwan.pptx")),
     (1, "Session 2", "14:15", "Antonin Le Floch", "Kinéis",
-     "NTN-IoT performance survey: from simulation to in-orbit testing", None),
+     "NTN-IoT performance survey: from simulation to in-orbit testing",
+     ("d1-s2-1415-lefloch-ntn-iot-survey.pdf", "d1-s2-1415-lefloch-ntn-iot-survey.pptx")),
     (1, "Session 2", "14:30", "Carlos Fernandez Hernandez", "INSA Lyon, Inria",
      "From ground to space: efficient downlink scheduling for direct-to-satellite LoRaWAN",
      "d1-s2-1430-fernandez-hernandez-downlink.pdf"),
@@ -110,16 +112,28 @@ def main():
     present = [t for t in TALKS
                if any(os.path.exists(os.path.join(SLIDES, f)) for f in files_of(t))]
 
-    # zip, rebuilt from scratch every time
-    zip_path = os.path.join(SLIDES, ZIP_NAME)
-    if os.path.exists(zip_path):
-        os.remove(zip_path)
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-        for t in present:
-            for f in files_of(t):
-                if os.path.exists(os.path.join(SLIDES, f)):
-                    z.write(os.path.join(SLIDES, f), f)
-    zip_size = human(os.path.getsize(zip_path))
+    def slug(day, session):
+        """d1-s1, d2-keynote, ... matching the file name prefix of that group."""
+        tail = session.lower().replace(" ", "").replace("session", "s")
+        return f"d{day}-{tail}"
+
+    # one zip per session, rebuilt from scratch every time
+    for old in os.listdir(SLIDES):
+        if old.endswith(".zip"):
+            os.remove(os.path.join(SLIDES, old))
+    zips = {}
+    for talk in present:
+        key = (talk[0], talk[1])
+        zips.setdefault(key, []).extend(
+            f for f in files_of(talk) if os.path.exists(os.path.join(SLIDES, f)))
+    zip_of = {}
+    for key, files in zips.items():
+        name = f"{ZIP_PREFIX}-{slug(*key)}.zip"
+        path = os.path.join(SLIDES, name)
+        with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
+            for f in files:
+                z.write(os.path.join(SLIDES, f), f)
+        zip_of[key] = (name, human(os.path.getsize(path)), len(files))
 
     rows = []
     last_key = None
@@ -132,7 +146,13 @@ def main():
                 rows.append(f'      <section>\n        <h2>{DAY_LABEL[day]}</h2>\n        <div class="rows">')
             elif last_key is None:
                 rows.append(f'      <section>\n        <h2>{DAY_LABEL[day]}</h2>\n        <div class="rows">')
-            rows.append(f'          <h3 class="sess">{session}</h3>')
+            if key in zip_of:
+                name, size, count = zip_of[key]
+                grab = (f'<a class="zip" href="{name}" download><span class="arrow">&darr;</span> '
+                        f'{count} file{"s" if count > 1 else ""} <span class="size">{size}</span></a>')
+            else:
+                grab = ""
+            rows.append(f'          <h3 class="sess">{session}{grab}</h3>')
             last_key = key
         have = [f for f in files_of(talk) if os.path.exists(os.path.join(SLIDES, f))]
         if have:
@@ -161,13 +181,14 @@ def main():
         rows="\n".join(rows),
         got=len(present),
         total=len([t for t in TALKS if t[1] != "Keynote"]) + 2,
-        zip_name=ZIP_NAME,
-        zip_size=zip_size,
         updated=datetime.now().strftime("%d %B %Y, %H:%M"),
     )
     with open(os.path.join(SLIDES, "index.html"), "w", encoding="utf-8") as fh:
         fh.write(html)
-    print(f"slides/index.html written: {len(present)} decks, zip {zip_size}")
+    print(f"slides/index.html written: {len(present)} decks")
+    for key in sorted(zip_of):
+        name, size, count = zip_of[key]
+        print(f"  {name}: {count} files, {size}")
 
 
 TEMPLATE = """<!DOCTYPE html>
@@ -242,27 +263,15 @@ TEMPLATE = """<!DOCTYPE html>
             color: #fed7aa;
         }}
 
-        .all {{
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin: 22px 0 4px;
-            padding: 12px 20px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, #ea580c, #f97316);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-        }}
-
-        .all:hover {{
-            opacity: 0.9;
-        }}
 
         .count {{
             color: var(--muted);
             font-size: 0.85rem;
-            margin-left: 12px;
+            margin: 20px 0 0;
+        }}
+
+        .count b {{
+            color: var(--text);
         }}
 
         h2 {{
@@ -271,12 +280,39 @@ TEMPLATE = """<!DOCTYPE html>
         }}
 
         .sess {{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
             margin: 26px 0 8px;
             font-size: 0.78rem;
             text-transform: uppercase;
             letter-spacing: 0.14em;
             color: var(--orbit-300);
             font-weight: 600;
+        }}
+
+        .zip {{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #ea580c, #f97316);
+            color: #fff;
+            text-decoration: none;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 0.82rem;
+        }}
+
+        .zip:hover {{
+            opacity: 0.9;
+        }}
+
+        .zip .size {{
+            color: rgba(255, 255, 255, 0.75);
         }}
 
         .row {{
@@ -386,9 +422,8 @@ TEMPLATE = """<!DOCTYPE html>
             <p class="notice">Working page for the organizers and the presentation desk. It is not linked
                 from the website and not indexed. Decks stay here until their authors agree to have them
                 published.</p>
-            <a class="all" href="{zip_name}" download><span class="arrow">&darr;</span> Download all
-                ({zip_size})</a>
-            <span class="count">{got} of {total} decks received</span>
+            <p class="count"><b>{got} of {total}</b> decks received. Each session has its own zip next
+                to its heading, so the desk can pull one session at a time.</p>
         </header>
 
 {rows}

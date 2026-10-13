@@ -59,14 +59,16 @@ between Vania, Juan and Peng there), `O` for the overview, `F` for fullscreen.
 
 Unlisted download page at https://ntndays.space/slides/ for the presentation laptop: every talk in
 programme order, a download link for the decks received and a "not received" marker for the rest, plus
-a zip of everything. It is `noindex, nofollow` and nothing on the site links to it, because the decks
+one zip per session next to its heading (`ntndays2026-slides-d1-s1.zip` and so on), so the desk can
+pull the next session rather than the whole event. It is `noindex, nofollow` and nothing on the site links to it, because the decks
 are not published until their authors agree.
 
 PDFs are named `d<day>-s<session>-<HHMM>-<speaker>-<topic>.pdf`, so a plain sort is programme order.
 After dropping new decks into `slides/`, add the file name to the `TALKS` table in `build-slides.py`
 and run `python3 build-slides.py` from the repository root: it rewrites `slides/index.html` (counts,
-file sizes, timestamp) and rebuilds `slides/ntndays2026-slides.zip`. The script warns about files
-listed but missing, and about PDFs on disk that no row claims.
+file sizes, timestamp) and rebuilds every session zip from scratch. A talk that sends both a PDF and
+the pptx it will be presented from takes a tuple of file names, and both land on the row and in the
+zip. The script warns about files listed but missing, and about decks on disk that no row claims.
 
 When the authors agree to publication, link the page from `#program` and drop the notice paragraph in
 the template.
