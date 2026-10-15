@@ -21,7 +21,8 @@ ZIP_PREFIX = "ntndays2026-slides"
 # they will actually present from.
 TALKS = [
     (1, "Keynote", "09:15", "Hassan Fawaz", "Univity",
-     "From Vision to Validation: Univity's 5G NTN Journey", None),
+     "From Vision to Validation: Univity's 5G NTN Journey",
+     "d1-keynote-0915-fawaz-univity.pdf"),
     (1, "Session 1", "10:30", "Flavien Ronteix", "EC-JRC",
      "IRIS², a catalyst for 5G NTN and European technological sovereignty",
      "d1-s1-1030-ronteix-iris2.pdf"),
