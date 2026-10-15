@@ -1,24 +1,39 @@
 #!/usr/bin/env python3
-"""Rebuild slides/index.html and slides/ntndays2026-slides.zip from the PDFs in slides/.
+"""Publish the speaker decks: copy the cleared files into slides/ and write slides/index.html.
 
-Run it from the repository root after dropping new decks into slides/:
+Run from the repository root:
 
     python3 build-slides.py
 
-Naming convention for the PDFs: d<day>-s<session>-<HHMM>-<speaker>-<topic>.pdf, which
-sorts in program order. Add the file name to TALKS below so the page picks it up.
+Two directories, on purpose:
+
+  ../2026-paris/slides-received   every file as the speakers sent it, outside the repository,
+                                  so nothing here is ever served from ntndays.space
+  slides/                         only what may go online, plus one zip per session and the
+                                  page that lists them
+
+Everything in slides/ is published the moment the repository is pushed, so a deck only lands
+there when its author has agreed. For each talk the script publishes the "-public" version if
+the author sent one, otherwise the PDF they presented from. Source files (pptx, superseded
+versions) stay in slides-received. A talk listed in DO_NOT_PUBLISH is left out altogether, and
+any file in slides/ that no row claims any more is deleted, so withdrawing a deck is one edit
+plus a rebuild.
+
+Naming: d<day>-s<session>-<HHMM>-<speaker>-<topic>.pdf, which sorts in programme order.
 """
 
 import os
+import shutil
 import zipfile
 from datetime import datetime
 
-SLIDES = "slides"
+RECEIVED = os.path.join("..", "2026-paris", "slides-received")
+PUBLISH = "slides"
 ZIP_PREFIX = "ntndays2026-slides"
 
-# (day, session, time, speaker, affiliation, title, file or None)
-# The last field takes one file name, or a tuple of them when a speaker also sends the pptx
-# they will actually present from.
+# (day, time) of talks we must not put online, whatever files we hold.
+DO_NOT_PUBLISH = set()
+
 TALKS = [
     (1, "Keynote", "09:15", "Hassan Fawaz", "Univity",
      "From Vision to Validation: Univity's 5G NTN Journey",
@@ -43,7 +58,10 @@ TALKS = [
      "d1-s1-1145-young-radio-astronomy.pdf"),
     (1, "Session 2", "13:30", "Omar El Marzougui", "Toulouse INP, IRIT",
      "Chirp-based waveform design for next generation non-terrestrial networks",
-     "d1-s2-1330-elmarzougui-chirp-waveform.pdf"),
+     ("d1-s2-1330-elmarzougui-chirp-waveform.pdf",
+      "d1-s2-1330-elmarzougui-chirp-waveform-public.pdf"),
+     "Publish the public version only. The presented deck holds unpublished results "
+     "(author's request, 2026-10-15)."),
     (1, "Session 2", "13:45", "Antony Pottier", "CEA-Leti",
      "Study of ODDM on NTN channels for LEO satellite communications",
      "d1-s2-1345-pottier-oddm.pdf"),
@@ -98,106 +116,128 @@ def human(nbytes):
     return f"{mb:.1f} MB" if mb >= 1 else f"{nbytes / 1024:.0f} KB"
 
 
+def files_of(talk):
+    """Every file a row claims, as a list, whether the table holds one name or several."""
+    raw = talk[6]
+    if not raw:
+        return []
+    return [raw] if isinstance(raw, str) else list(raw)
+
+
+def publishable(talk):
+    """The one file that goes online for this talk, or None.
+
+    The "-public" version wins when the author sent one. pptx never goes online: it is a
+    working file, and the PDF is what we show.
+    """
+    if (talk[0], talk[2]) in DO_NOT_PUBLISH:
+        return None
+    pdfs = [f for f in files_of(talk)
+            if f.lower().endswith(".pdf") and os.path.exists(os.path.join(RECEIVED, f))]
+    public = [f for f in pdfs if f.rsplit(".", 1)[0].endswith("-public")]
+    return (public or pdfs or [None])[0]
+
+
 def main():
     here = os.path.dirname(os.path.abspath(__file__))
     os.chdir(here)
+    os.makedirs(PUBLISH, exist_ok=True)
 
-    def files_of(talk):
-        """Every file a row claims, as a list, whether the table holds one name or several."""
-        raw = talk[6]
-        if not raw:
-            return []
-        return [raw] if isinstance(raw, str) else list(raw)
+    for f in (f for t in TALKS for f in files_of(t)):
+        if not os.path.exists(os.path.join(RECEIVED, f)):
+            print(f"WARNING: listed but not in slides-received: {f}")
+    claimed = {f for t in TALKS for f in files_of(t)}
+    on_disk = {f for f in os.listdir(RECEIVED)
+               if f.lower().endswith((".pdf", ".pptx", ".ppt", ".key")) and not f.startswith("_")}
+    for u in sorted(on_disk - claimed):
+        print(f"WARNING: in slides-received but in no row: {u}")
 
-    listed = [f for t in TALKS for f in files_of(t)]
-    for f in listed:
-        if not os.path.exists(os.path.join(SLIDES, f)):
-            print(f"WARNING: listed but not on disk: {f}")
+    chosen = {}
+    for talk in TALKS:
+        f = publishable(talk)
+        if f:
+            chosen[(talk[0], talk[2])] = f
+            src, dst = os.path.join(RECEIVED, f), os.path.join(PUBLISH, f)
+            if not os.path.exists(dst) or os.path.getsize(dst) != os.path.getsize(src):
+                shutil.copy2(src, dst)
+                print(f"published {f}")
 
-    on_disk = {f for f in os.listdir(SLIDES) if f.lower().endswith((".pdf", ".pptx", ".ppt", ".key"))}
-    for u in sorted(on_disk - set(listed)):
-        print(f"WARNING: on disk but not in TALKS: {u}")
+    # anything in slides/ that is no longer published goes, so a withdrawal really withdraws
+    keep = set(chosen.values()) | {"index.html"}
+    for f in sorted(os.listdir(PUBLISH)):
+        if f in keep or f.endswith(".zip"):
+            continue
+        os.remove(os.path.join(PUBLISH, f))
+        print(f"REMOVED from slides/: {f}")
 
-    present = [t for t in TALKS
-               if any(os.path.exists(os.path.join(SLIDES, f)) for f in files_of(t))]
+    for note in (f"NOTE {t[2]} {t[3]}: {t[7]}" for t in TALKS if len(t) > 7 and t[7]):
+        print(note)
 
     def slug(day, session):
-        """d1-s1, d2-keynote, ... matching the file name prefix of that group."""
         tail = session.lower().replace(" ", "").replace("session", "s")
         return f"d{day}-{tail}"
 
-    # one zip per session, rebuilt from scratch every time
-    for old in os.listdir(SLIDES):
+    for old in os.listdir(PUBLISH):
         if old.endswith(".zip"):
-            os.remove(os.path.join(SLIDES, old))
-    zips = {}
-    for talk in present:
-        key = (talk[0], talk[1])
-        zips.setdefault(key, []).extend(
-            f for f in files_of(talk) if os.path.exists(os.path.join(SLIDES, f)))
+            os.remove(os.path.join(PUBLISH, old))
+    groups = {}
+    for talk in TALKS:
+        f = chosen.get((talk[0], talk[2]))
+        if f:
+            groups.setdefault((talk[0], talk[1]), []).append(f)
     zip_of = {}
-    for key, files in zips.items():
+    for key, files in groups.items():
         name = f"{ZIP_PREFIX}-{slug(*key)}.zip"
-        path = os.path.join(SLIDES, name)
+        path = os.path.join(PUBLISH, name)
         with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
             for f in files:
-                z.write(os.path.join(SLIDES, f), f)
+                z.write(os.path.join(PUBLISH, f), f)
         zip_of[key] = (name, human(os.path.getsize(path)), len(files))
 
     rows = []
     last_key = None
     for talk in TALKS:
         day, session, time, who, aff, title = talk[:6]
+        f = chosen.get((day, time))
+        if not f:
+            continue
         key = (day, session)
         if key != last_key:
-            if last_key is not None and last_key[0] != day:
+            if last_key is not None:
                 rows.append("        </div>\n      </section>")
+            if last_key is None or last_key[0] != day:
                 rows.append(f'      <section>\n        <h2>{DAY_LABEL[day]}</h2>\n        <div class="rows">')
-            elif last_key is None:
-                rows.append(f'      <section>\n        <h2>{DAY_LABEL[day]}</h2>\n        <div class="rows">')
-            if key in zip_of:
-                name, size, count = zip_of[key]
-                grab = (f'<a class="zip" href="{name}" download><span class="arrow">&darr;</span> '
-                        f'{count} file{"s" if count > 1 else ""} <span class="size">{size}</span></a>')
             else:
-                grab = ""
+                rows.append('      <section>\n        <div class="rows">')
+            name, size, count = zip_of[key]
+            grab = (f'<a class="zip" href="{name}" download><span class="arrow">&darr;</span> '
+                    f'{count} deck{"s" if count > 1 else ""} <span class="size">{size}</span></a>')
             rows.append(f'          <h3 class="sess">{session}{grab}</h3>')
             last_key = key
-        have = [f for f in files_of(talk) if os.path.exists(os.path.join(SLIDES, f))]
-        if have:
-            links = []
-            for f in have:
-                kind = f.rsplit(".", 1)[-1].upper()
-                size = human(os.path.getsize(os.path.join(SLIDES, f)))
-                links.append(f'<a class="dl" href="{f}" download>'
-                             f'<span class="arrow">&darr;</span> {kind} <span class="size">{size}</span></a>')
-            action = f'<span class="files">{"".join(links)}</span>'
-            state = "has"
-        else:
-            action = '<span class="pending">not received</span>'
-            state = "no"
+        size = human(os.path.getsize(os.path.join(PUBLISH, f)))
         rows.append(
-            f'          <div class="row {state}">\n'
+            f'          <div class="row">\n'
             f'            <span class="time">{time}</span>\n'
             f'            <span class="meta"><b>{who}</b> <span class="aff">&middot; {aff}</span><br>'
             f'<span class="title">{title}</span></span>\n'
-            f'            {action}\n'
+            f'            <a class="dl" href="{f}"><span class="arrow">&darr;</span> PDF '
+            f'<span class="size">{size}</span></a>\n'
             f'          </div>'
         )
     rows.append("        </div>\n      </section>")
 
     html = TEMPLATE.format(
         rows="\n".join(rows),
-        got=len(present),
+        got=len(chosen),
         total=len([t for t in TALKS if t[1] != "Keynote"]) + 2,
-        updated=datetime.now().strftime("%d %B %Y, %H:%M"),
+        updated=datetime.now().strftime("%d %B %Y"),
     )
-    with open(os.path.join(SLIDES, "index.html"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(PUBLISH, "index.html"), "w", encoding="utf-8") as fh:
         fh.write(html)
-    print(f"slides/index.html written: {len(present)} decks")
+    print(f"\nslides/index.html written: {len(chosen)} decks online")
     for key in sorted(zip_of):
         name, size, count = zip_of[key]
-        print(f"  {name}: {count} files, {size}")
+        print(f"  {name}: {count} decks, {size}")
 
 
 TEMPLATE = """<!DOCTYPE html>
@@ -206,8 +246,8 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NTN Days 2026 | Speaker slides</title>
-    <meta name="robots" content="noindex, nofollow">
+    <title>NTN Days 2026 | Slides</title>
+    <meta name="description" content="Slides from the talks of NTN Days 2026, October 13-14, 2026, Cnam, Paris.">
     <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -336,12 +376,6 @@ TEMPLATE = """<!DOCTYPE html>
             margin-bottom: 8px;
         }}
 
-        .row.no {{
-            background: transparent;
-            border-style: dashed;
-            opacity: 0.6;
-        }}
-
         .time {{
             color: var(--orbit-300);
             font-weight: 600;
@@ -356,6 +390,17 @@ TEMPLATE = """<!DOCTYPE html>
         .title {{
             color: var(--muted);
             font-size: 0.88rem;
+        }}
+
+        .note {{
+            display: inline-block;
+            margin-top: 4px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(249, 115, 22, 0.12);
+            border: 1px solid rgba(194, 65, 12, 0.45);
+            color: var(--orbit-300);
+            font-size: 0.78rem;
         }}
 
         .files {{
@@ -426,19 +471,18 @@ TEMPLATE = """<!DOCTYPE html>
 <body>
     <div class="wrap">
         <header>
-            <h1>Speaker slides</h1>
+            <h1>Slides</h1>
             <p class="sub">NTN Days 2026 &middot; Cnam, Paris &middot; 13&ndash;14 October 2026</p>
-            <p class="notice">Working page for the organizers and the presentation desk. It is not linked
-                from the website and not indexed. Decks stay here until their authors agree to have them
-                published.</p>
-            <p class="count"><b>{got} of {total}</b> decks received. Each session has its own zip next
-                to its heading, so the desk can pull one session at a time.</p>
+            <p class="count"><b>{got}</b> presentations, shared with the agreement of their authors.
+                Each session can also be downloaded as a single zip.</p>
         </header>
 
 {rows}
 
         <footer>
-            Updated {updated}. Back to the <a href="../">programme</a>.
+            Updated {updated}. Back to the <a href="../#program">programme</a>.
+            Speakers: write to <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> to have
+            your slides replaced or taken down.
         </footer>
     </div>
 </body>

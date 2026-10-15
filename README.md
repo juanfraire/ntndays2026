@@ -20,9 +20,12 @@ DNS at Namecheap needs no changes; the domain is reassigned on the GitHub side o
 
 ## Phases
 
-The site is in the **program phase**: the final program is online in `#program` (published September 23, 2026),
-"Program" is the primary hero button and a nav entry, registration (free, until October 9) and poster
-submissions stay open alongside it. Talk submissions closed on September 21.
+The site is in the **post-event phase** (October 16, 2026). A banner above the nav says the event has
+concluded and points at the slides and the photos; the hero buttons are Program, Slides and Photos;
+`#submit` became "After the event" and no longer links to the registration or poster forms; `#editions`
+leads with a "Next edition" card for NTN Days 2027 at IRISA, Rennes, and lists 2026 among the editions.
+Earlier phases, for the record: talk submissions closed September 21, the final programme went online
+September 23, registration and poster submissions closed October 9.
 
 ### Program section
 
@@ -57,21 +60,60 @@ between Vania, Juan and Peng there), `O` for the overview, `F` for fullscreen.
 
 ### Speaker slides (`slides/`)
 
-Unlisted download page at https://ntndays.space/slides/ for the presentation laptop: every talk in
-programme order, a download link for the decks received and a "not received" marker for the rest, plus
-one zip per session next to its heading (`ntndays2026-slides-d1-s1.zip` and so on), so the desk can
-pull the next session rather than the whole event. It is `noindex, nofollow` and nothing on the site links to it, because the decks
-are not published until their authors agree.
+Public download page at https://ntndays.space/slides/, linked from the nav, from the line under
+`#program`, and talk by talk from every programme row (`.program-slides`). One PDF per talk, grouped
+by session, plus a zip per session.
 
-PDFs are named `d<day>-s<session>-<HHMM>-<speaker>-<topic>.pdf`, so a plain sort is programme order.
-After dropping new decks into `slides/`, add the file name to the `TALKS` table in `build-slides.py`
-and run `python3 build-slides.py` from the repository root: it rewrites `slides/index.html` (counts,
-file sizes, timestamp) and rebuilds every session zip from scratch. A talk that sends both a PDF and
-the pptx it will be presented from takes a tuple of file names, and both land on the row and in the
-zip. The script warns about files listed but missing, and about decks on disk that no row claims.
+Two directories, and the split is the whole point:
 
-When the authors agree to publication, link the page from `#program` and drop the notice paragraph in
-the template.
+| Where | What | Served? |
+|---|---|---|
+| `../2026-paris/slides-received/` | every file exactly as the speaker sent it: pptx, superseded versions, the decks presented from | no, it is outside the repository |
+| `slides/` | only what may go online, plus the session zips and the page | yes, everything in it is a public URL |
+
+`build-slides.py` copies from the first to the second. For each row of its `TALKS` table it picks the
+`-public` version when the author sent one, otherwise the PDF presented from, and never a pptx. A talk
+listed in `DO_NOT_PUBLISH` (keyed by day and time) is skipped, and any file in `slides/` that no row
+claims any more is deleted, so a withdrawal is one edit plus a rebuild. An optional eighth field on a
+row records what an author asked; it is printed when the script runs and never reaches the page.
+
+Workflow when a deck arrives or an author answers:
+
+1. drop the file in `../2026-paris/slides-received/`, named `d<day>-s<session>-<HHMM>-<speaker>-<topic>.pdf`
+   (a cleared variant takes the same name plus `-public`);
+2. add or edit its row in `TALKS`;
+3. run `python3 build-slides.py` from the repository root;
+4. add the link to the programme row in `index.html` by hand (`.program-slides`), if the talk had none.
+
+The script warns about files listed in `TALKS` but missing from `slides-received`, and about decks in
+`slides-received` that no row claims. Files starting with `_` are ignored, which is where the duplicate
+Drive left behind lives.
+
+Standing requests from authors:
+
+- Omar El Marzougui (Day 1, 13:30): publish the public version only, the presented deck holds
+  unpublished results.
+
+### Photos (`gallery/`, `#photos`)
+
+Drifting two-row photo band between `#program` and `#dates`, with a lightbox (arrows, Escape,
+swipe), ported from the STINT site. Same split as the slides:
+
+| Where | What | Served? |
+|---|---|---|
+| `../2026-paris/pics/` | the phone originals, HEIC with EXIF and GPS | no, outside the repository |
+| `gallery/` | web copies (long edge 1800 px, metadata stripped), thumbnails 400 px tall, and `gallery.js` | yes |
+
+`make-gallery.py` derives the second from the first with ImageMagick, incrementally: only new or
+changed originals are converted, and gallery files whose original is gone are deleted. So curating
+the set means adding or removing files in `../2026-paris/pics/` and running it again.
+
+    python3 make-gallery.py            # incremental
+    python3 make-gallery.py --force    # reconvert everything
+
+Captions are optional: `../2026-paris/pics/captions.txt`, one `IMG_8300: caption text` per line.
+The band sorts by EXIF capture time, shows the time under each photo in the lightbox, and the whole
+section stays hidden when `gallery.js` is missing.
 
 | Item | Link |
 |---|---|
