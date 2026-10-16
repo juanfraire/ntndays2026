@@ -91,6 +91,9 @@ Drive left behind lives.
 
 Standing requests from authors:
 
+- Ashutosh Balakrishnan (Day 1, 11:30): do not publish, the work is under review. Listed in
+  `DO_NOT_PUBLISH`, so the rebuild deleted the deck from `slides/` and dropped its row and its
+  programme link.
 - Omar El Marzougui (Day 1, 13:30): publish the public version only, the presented deck holds
   unpublished results.
 

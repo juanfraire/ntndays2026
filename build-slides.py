@@ -32,7 +32,9 @@ PUBLISH = "slides"
 ZIP_PREFIX = "ntndays2026-slides"
 
 # (day, time) of talks we must not put online, whatever files we hold.
-DO_NOT_PUBLISH = set()
+DO_NOT_PUBLISH = {
+    (1, "11:30"),   # Balakrishnan: work under review, author asked us not to share it (2026-10-16)
+}
 
 TALKS = [
     (1, "Keynote", "09:15", "Hassan Fawaz", "Univity",
@@ -52,7 +54,8 @@ TALKS = [
      ("d1-s1-1115-lghoury-beam-hopping.pdf", "d1-s1-1115-lghoury-beam-hopping.pptx")),
     (1, "Session 1", "11:30", "Ashutosh Balakrishnan", "Télécom Paris",
      "Doppler-Shannon association framework for non-terrestrial networks",
-     "d1-s1-1130-balakrishnan-doppler-shannon.pdf"),
+     "d1-s1-1130-balakrishnan-doppler-shannon.pdf",
+     "Not published: the work is under review (author's request, 2026-10-16)."),
     (1, "Session 1", "11:45", "Graeme Young", "SKAO",
      "Radio astronomy protection for direct-to-device applications",
      "d1-s1-1145-young-radio-astronomy.pdf"),
